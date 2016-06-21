@@ -1,0 +1,15 @@
+.container.pins-container
+	.row
+		.col-md-12
+			.input-group.search-bar
+				input(type="text" class="form-control" placeholder="Search for pins" ng-model="search.query")
+				.input-group-btn
+					button.btn.btn-primary(type="submit")
+						span.glyphicon.glyphicon-search(aria-hidden="true")
+	ng-map(zoom="6" center="[43.74, 24.18]")
+		marker(ng-repeat="pin in pins | filter: search.query",
+			position="{{ pin.markerPosition }}"
+			data="{{ pin }}"
+			on-click="showData(map)"
+			title="{{ pin.title }}")
+

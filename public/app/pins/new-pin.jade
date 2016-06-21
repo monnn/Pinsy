@@ -1,0 +1,28 @@
+.container.inner-form-container
+	.vell
+		form.form-horizontal(name="addPinForm")
+			fieldset 
+				legend Add new pin
+				.form-group
+					label.col-md-2.control-label(for="title") Title
+					.col-md-10
+						input.form-control(type="text", placeholder="Title", ng-model="pin.title", required)
+				.form-group
+					label.col-md-2.control-label(for="description") Write a story
+					.col-md-10
+						textarea.form-control(type="text", placeholder="Write your story here", ng-model="pin.description", rows="5")
+				.form-group
+					label.col-md-2.control-label(for="location") Select location
+					.map-lazy-load.google-map
+							ng-map(center="42, 23" zoom="6", on-click="placeMarker(event, map)")
+				.form-group
+					label.col-md-2.control-label(for="file") Select file to upload
+					.col-md-10
+						input.file.form-control(type="file", ngf-select, ng-model="pin.attachment")
+				.form-group
+					label.col-md-2.control-label(for="tags") Add tag
+					.col-md-10
+						input.form-control(type="text", placeholder="Tag", ng-model="pin.tags")
+				.pull-right
+					button.btn.btn-primary(ng-click="createPin(pin)", ng-disabled="addPinForm.$invalid") Create pin
+					a.btn.btn-primary(href="#/") Cancel

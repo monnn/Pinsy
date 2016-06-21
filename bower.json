@@ -1,0 +1,31 @@
+{
+  "name": "pinsy",
+  "description": "WebApp for pinning",
+  "main": "server.js",
+  "authors": [
+    "Moni"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "toastr": "^2.1.2",
+    "angular": "^1.5.5",
+    "angular-resource": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "ng-file-upload": "^12.0.4",
+    "ngmap": "^1.17.3",
+    "angular-underscore-module": "^1.0.3",
+    "d3": "^3.5.17",
+    "d3-cloud": "^1.2.1"
+  }
+}

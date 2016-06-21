@@ -1,0 +1,18 @@
+extends include/layout
+block main-content
+	header.nav.navbar-inverse.navbar-fixed-top.header-container
+		.splash-wrapper
+			.splash-text Welcome to Pinsy!
+			.splash
+			.splash-section.section-left
+			.splash-section.section-right
+		.container
+			a.logo(href="#/")
+			.navbar-collapse.collapse.menu
+				div(ng-include="'partials/account/login'")
+	section
+		div(ng-view)
+
+	footer
+		p.text-center
+			| &copy; 2016 Moni
