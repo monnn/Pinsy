@@ -2,7 +2,7 @@
     margin-top: 40px
 }
 
-.title-on-map {
+.title-on-map, .whole-pin-title {
   border-bottom: 2px solid #B3D1FF;
   font-weight: bold;
   padding: 0 10px;
@@ -37,4 +37,8 @@
 
 .see-more {
   padding-top: 5px;
+}
+
+.see-more-link {
+  color: #337ab7 !important;
 }

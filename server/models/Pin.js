@@ -5,7 +5,8 @@ var pinSchema = mongoose.Schema({
 		description: String,
 		location: Object,
 		markerPosition: Array,
-		attachment: String,
+		image: String,
+		video: String,
 		creator: Object,
 		date: Date,
 		tags: String

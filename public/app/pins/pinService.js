@@ -19,9 +19,15 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
 			pin.date = Date.now();
 			
 			var reading = $q.defer().resolve();
-			if (pin.attachment) {
-				reading = readFile(pin.attachment).then(function(newPinAttachment) {
-					pin.attachment = newPinAttachment;
+			if (pin.image) {
+				reading = readFile(pin.image).then(function(newPinImage) {
+					pin.image = newPinImage;
+				})
+			}
+			if (pin.video) {
+				reading = readFile(pin.video).then(function(newPinVideo) {
+					pin.video = newPinVideo;
+					// $sce.trustAsResourceUrl(pin.video);
 				})
 			}
 

@@ -16,9 +16,13 @@
 					.map-lazy-load.google-map
 							ng-map(center="42, 23" zoom="6", on-click="placeMarker(event, map)")
 				.form-group
-					label.col-md-2.control-label(for="file") Select file to upload
+					label.col-md-2.control-label(for="file") Select image to upload
 					.col-md-10
-						input.file.form-control(type="file", ngf-select, ng-model="pin.attachment")
+						input.file.form-control(type="file", ngf-select, ng-model="pin.image")
+				.form-group
+					label.col-md-2.control-label(for="file") Select video to upload
+					.col-md-10
+						input.file.form-control(type="file", ngf-select, ng-model="pin.video")
 				.form-group
 					label.col-md-2.control-label(for="tags") Add tag
 					.col-md-10

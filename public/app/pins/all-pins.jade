@@ -13,3 +13,18 @@
 			on-click="showData(map)"
 			title="{{ pin.title }}")
 
+	table.whole-pin-data(ng-show="wholePinDataOpened")
+		tr
+			td.whole-pin-title {{ currentPin.title }}
+		tr
+			td.whole-pin-description {{ currentPin.description }}
+		tr
+			td.whole-image-cell
+				img.whole-image(src="{{ currentPin.image }}")
+		tr
+			td
+				video.video-js.vjs-default-skin(id="really-cool-video" controls preload="auto" width="640" height="264" poster="really-cool-video-poster.jpg" data-setup='{}')
+					source(src="{{ currentPin.video }}" type="video/mp4")
+		tr
+			td.creator-on-map  By {{ currentPin.creator.username }}
+
