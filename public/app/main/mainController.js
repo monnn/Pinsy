@@ -37,7 +37,7 @@ app.controller('MainController', function ($scope, $timeout, PinResource, _) {
     });
 
     $('.carousel').carousel({
-		interval: 5000
+		interval: 3000
 	})
 
 	$('.first-carousel-indicator').addClass('active');

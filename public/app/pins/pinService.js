@@ -15,7 +15,6 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
 			var pin = new PinResource(pin);
 			var deferred = $q.defer()
 			pin.creator = identity.currentUser;
-			console.log(pin.creator);
 			pin.date = Date.now();
 			
 			var reading = $q.defer().resolve();

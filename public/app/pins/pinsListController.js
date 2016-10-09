@@ -5,38 +5,25 @@ app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap,
 		$('body').addClass('leaving');
 	});
 
-	$scope.showData = function(map) {
-		console.log($scope.currentPin);
-		$scope.currentPin = this.data;
-		$sce.trustAsResourceUrl(this.data.video);
-		var infowindow = new google.maps.InfoWindow({
-			content: '<table class="content-info-window"><tr><td class="title-on-map">' + this.data.title + '</td></tr><tr><td class="description-on-map">' + this.data.description + '</td><td class="image-cell-on-map"><img src=' + this.data.image + ' class="image-on-map"></tr><tr><td class="creator-on-map">' + 'by ' + this.data.creator.username + '</td><td class="see-more"><a class="see-more-link" onclick="showWholePinData()">' + 'see more' + '</td></tr></table>'
-		});
-		infowindow.open(map, this);
-	
+	NgMap.getMap().then(function(map) {
+		$scope.map = map;
+	  });
 
-	    var inner = $('.content-info-window');
-	    var outer = inner.parent().parent().parent().parent();
-	    var wholeInfoWindow = outer.children(':nth-child(1)').children(':nth-child(4)');
-	    wholeInfoWindow.addClass("whole-info-window");
+	$scope.showData = function(event, pin) {
+		$scope.currentPin = pin;
+		$scope.map.showInfoWindow('pin-iw', this);
+		// $sce.trustAsResourceUrl(this.data.video);
 
-	    // var closeButton = inner.parent().parent().parent().parent().children(':nth-child(3)');
-	    // closeButton.addClass("close-button");
-
-	    // $('.close-button').click(function() {
-	    // 	$scope.currentPin = null;
-	    // 	console.log($scope.currentPin);
-	    // })
+	    // var inner = $('.content-info-window:eq( 2 )');
+	    // console.log(inner);
+	    // var outer = inner.parent().parent().parent().parent();
+	    // var wholeInfoWindow = outer.children(':nth-child(1)').children(':nth-child(4)');
+	    // console.log(wholeInfoWindow);
+	    // wholeInfoWindow.addClass("whole-info-window");
 	}
 
-	showWholePinData = function() {
-		$sce.trustAsResourceUrl($scope.currentPin.video);
-		$scope.wholePinDataOpened = true;
-		console.log($scope.wholePinDataOpened);
+	$scope.toggleWholePinOpened = function() {
+		$scope.wholePinOpened = !$scope.wholePinOpened;
+		$('body').toggleClass('disable-scroll', $scope.wholePinOpened);
 	}
-
-	$scope.closeWholePinData = function() {
-		$scope.wholePinDataOpened = false;
-	}
-
 });

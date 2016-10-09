@@ -14,12 +14,12 @@
     max-height: 120px !important;
 }
 
-.whole-info-window {
+/*.whole-info-window {
   border: 2px solid #3292C4;
   border-bottom-width: 1px;
   border-radius: 5px !important;
   min-width: 400px;
-}
+}*/
 
 .creator-on-map {
   padding-top: 5px;
@@ -33,6 +33,10 @@
 
 .image-cell-on-map {
   float: right;
+}
+
+.description-on-map {
+  padding: 10px;
 }
 
 .see-more {

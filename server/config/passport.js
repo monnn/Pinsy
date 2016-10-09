@@ -10,7 +10,6 @@ module.exports = function() {
 				return;
 			}
 
-			// our authenticate method
 			if (user && user.authenticate(password)) {
 				return done(null, user);
 			}

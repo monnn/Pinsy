@@ -29,13 +29,13 @@
 }
 
 .splash-section.section-left {
-    background-color: #337AB7;
+    background-image: -moz-linear-gradient(left, #337AB7 9%, #29FFFF 90%);
     background-image: -webkit-linear-gradient(left, #337AB7 9%, #29FFFF 90%);
     left: 0;
 }
 
 .splash-section.section-right {
-    background-color: #337AB7;
+    background-image: -moz-linear-gradient(right, #337AB7 9%, #29FFFF 90%);
     background-image: -webkit-linear-gradient(right, #337AB7 9%, #29FFFF 90%);
     right: 0;
 }
