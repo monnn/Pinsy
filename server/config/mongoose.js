@@ -4,8 +4,8 @@ var mongoose = require('mongoose'),
 
 
 module.exports = function(config) {
-	mongoose.connect(config.db)
 	var db = mongoose.connection;
+	mongoose.connect(config.db)
 
 	db.once('open', function(err) {
 		if (err) {

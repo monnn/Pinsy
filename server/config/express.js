@@ -17,7 +17,6 @@ module.exports = function(app, config) {
     	saveUninitialized: true,
     	secret: "unicorns" // pass a cookie
 	}));
-	// app.use(bodyParser({limit: '50mb'}));
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(express.static(config.rootPath + '/public'));

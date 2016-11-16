@@ -12,4 +12,4 @@ var pinSchema = mongoose.Schema({
 		tags: String
 	});
 
-	var Pin = mongoose.model('Pin', pinSchema);
+var Pin = mongoose.model('Pin', pinSchema);

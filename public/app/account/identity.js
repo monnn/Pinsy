@@ -1,5 +1,4 @@
 app.factory('identity', function ($window, UserResource) {
-
 	var user;
 
 	if ($window.bootstrappedUserObject) {

@@ -17,7 +17,7 @@ var userSchema = mongoose.Schema({
 		}
 	})
 
-	var User = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
 module.exports.seedInitialUsers = function() {
 	User.find({}).exec(function(err, collection) {
@@ -27,8 +27,8 @@ module.exports.seedInitialUsers = function() {
 		}
 
 		if (collection.length === 0) {
-			var salt;
-			var hashPass;
+			var salt,
+				hashPass;
 
 			salt = encryption.generateSalt();
 			hashPass = encryption.generateHashPassword(salt, '123');

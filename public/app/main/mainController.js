@@ -2,11 +2,11 @@ app.controller('MainController', function ($scope, $timeout, PinResource, _) {
 	$scope.pins = PinResource.query();
 
 	var initializewordCloudData = function() {
-		var arrayWithTags = [];
-		var arrayWithTagsAndSize = [];
-		var initialSize = 10;
+		var arrayWithTags = [],
+			arrayWithTagsAndSize = [],
+			initialSize = 10;
 
-		var increaseSize =  function(tag) {
+		var increaseSize = function(tag) {
 			arrayWithTagsAndSize.find(function(tagObject) {
 				if (tagObject.text === tag) {
 					tagObject.size += 5;

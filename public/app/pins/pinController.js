@@ -1,5 +1,4 @@
 app.controller('PinController', function ($scope, $location, pinService, notifier, NgMap) {
-  
 	$scope.createPin = function (pin) {
     pin.location = $scope.location;
     pin.markerPosition = [pin.location.lat(), pin.location.lng()];
@@ -19,8 +18,8 @@ app.controller('PinController', function ($scope, $location, pinService, notifie
   });
 
   $scope.placeMarker = function(event, map) {
-    var location = event.latLng;
-    var marker = new google.maps.Marker({
+    var location = event.latLng,
+      marker = new google.maps.Marker({
       position: location, 
       map: map
     });

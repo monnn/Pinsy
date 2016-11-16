@@ -1,9 +1,12 @@
 var Pin = require('mongoose').model('Pin'),
-	User = require('mongoose').model('User');
+	User = require('mongoose').model('User'),
+	fs = require('fs'),
+	config = require('../config/config');
 
 module.exports = {
 	createPin: function (req, res, next) {
 		var newPinData = req.body;
+
 		Pin.create(newPinData, function (err, pin) {
 			if (err) {
 				console.log('Failed to create new pin ' + err);
@@ -27,5 +30,14 @@ module.exports = {
 			}
 			res.send(collection);
 		})
+	},
+
+	getUploadToken: function(req, res) {
+		fs.readFile(config.rootPath + '/dropbox-tokens.json', 'utf8', function (err, fileContents) {
+			if (err) {
+				return console.log(err);
+			}
+			res.send(fileContents);
+		});
 	}
 }
