@@ -1,41 +1,40 @@
 .container.pins-container
-	.row
-		.col-md-12
-			.input-group.search-bar
-				input(type="text" class="form-control" placeholder="Search for pins" ng-model="search.query")
-				.input-group-btn
-					button.btn.btn-primary(type="submit")
-						span.glyphicon.glyphicon-search(aria-hidden="true")
-	ng-map(default-style="true" zoom="6" center="[43.74, 24.18]")
-		marker(id="{{ pin._id }}", ng-repeat="pin in pins | filter: search.query",
-			position="{{ pin.markerPosition }}"
-			on-click="showData(event, pin)"
-			title="{{ pin.title }}")
+  .row
+    .col-md-12
+      .input-group.search-bar
+        input(type="text" class="form-control" placeholder="Search for pins" ng-model="search.query")
+        .input-group-btn
+          button.btn.btn-primary(type="submit")
+            span.glyphicon.glyphicon-search(aria-hidden="true")
+  ng-map(default-style="true" zoom="6" center="[43.74, 24.18]")
+    marker(id="{{ pin._id }}", ng-repeat="pin in pins | filter: search.query",
+      position="{{ pin.markerPosition }}"
+      on-click="showData(event, pin)"
+      title="{{ pin.title }}")
 
-		info-window#pin-iw(visible-on-marker="{{ pin._id }}")
-			div(ng-non-bindable)
-				table.content-info-window
-					tr
-						td.title-on-map {{ currentPin.title }}
-					tr
-						td.description-on-map {{ currentPin.description }}
-						td.image-cell-on-map
-							img.image-on-map(src="{{ currentPin.image }}")
-					tr
-						td.creator-on-map by {{ currentPin.creator.username }}
-						td.see-more-link
-							a.see-more-link(ng-click="toggleWholePinOpened()") see more
+    info-window#pin-iw(visible-on-marker="{{ pin._id }}")
+      div(ng-non-bindable)
+        table.content-info-window
+          tr
+            td.title-on-map {{ currentPin.title }}
+          tr
+            td.description-on-map {{ currentPin.description }}
+            td.image-cell-on-map
+              img.image-on-map(src="{{ currentPin.image }}")
+          tr
+            td.creator-on-map by {{ currentPin.creator.username }}
+            td.see-more-link
+              a.see-more-link(ng-click="toggleWholePinOpened()") see more
 
-	.overlay(ng-show="currentPin && wholePinOpened", ng-click="toggleWholePinOpened()")
-	.whole-pin-dialog(ng-show="currentPin && wholePinOpened")
-		.close-button(ng-click="toggleWholePinOpened()") X
-		table.whole-pin-data
-			tr
-				td.whole-pin-title {{ currentPin.title }}
-			tr
-				td.whole-image-cell
-					img.whole-image(src="{{ currentPin.image }}")
-				td.whole-pin-description {{ currentPin.description }}
-			tr
-				td.creator-on-map  By {{ currentPin.creator.username }}
-
+  .overlay(ng-show="currentPin && wholePinOpened", ng-click="toggleWholePinOpened()")
+  .whole-pin-dialog(ng-show="currentPin && wholePinOpened")
+    .close-button(ng-click="toggleWholePinOpened()") X
+    table.whole-pin-data
+      tr
+        td.whole-pin-title {{ currentPin.title }}
+      tr
+        td.whole-image-cell
+          img.whole-image(src="{{ currentPin.image }}")
+        td.whole-pin-description {{ currentPin.description }}
+      tr
+        td.creator-on-map  By {{ currentPin.creator.username }}

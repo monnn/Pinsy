@@ -9,25 +9,25 @@ footer p {
 }
 
 input {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 
 .toast-top-right {
-	top: 70px;
+  top: 70px;
 }
 
 .inner-form-container {
-	margin-top: 100px;
+  margin-top: 100px;
 }
 
 .title-container {
   background-image: -moz-linear-gradient(left, #337AB7 9%, #29FFFF 90%);
-	background-image: -webkit-linear-gradient(left, #337AB7 9%, #29FFFF 90%);
-	box-shadow: 10px 10px 5px #337AB7;
+  background-image: -webkit-linear-gradient(left, #337AB7 9%, #29FFFF 90%);
+  box-shadow: 10px 10px 5px #337AB7;
 }
 
 .header-container {
-	background-color: #3292C4;
+  background-color: #3292C4;
 }
 
 .pins-container {
