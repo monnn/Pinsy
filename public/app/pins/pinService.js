@@ -50,6 +50,18 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
                 });
             });
             return deferred.promise;
+        },
+
+        likePin: function(pin, hasLiked) {
+            var deferred = $q.defer();
+            $http.post('/pin/like', {pin: pin, user: identity.currentUser, hasLiked: hasLiked})
+            .success(function(response) {
+                deferred.resolve(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+            return deferred.promise;
         }
     }
 });

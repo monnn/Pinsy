@@ -8,7 +8,9 @@ var userSchema = mongoose.Schema({
     salt: String,
     hashPass: String,
     roles: [String],
-    pins: Array
+    pins: Array,
+    likes: Array,
+    comments: Array
   });
 
 userSchema.method({

@@ -10,6 +10,9 @@ module.exports = function(app) {
     app.get('/api/pins', pinController.getAllPins);
     app.post('/api/pins', pinController.createPin);
     app.get('/uploadToken', pinController.getUploadToken);
+    app.post('/pin/like', pinController.likePin);
+    app.post('/pin/comment', pinController.commentPin);
+    app.get('/pin/comments', pinController.getAllComments);
 
     app.get('/partials/:partialDir/:partialName', function (req, res) {
         res.render('../../public/app/' + req.params.partialDir + '/' + req.params.partialName);

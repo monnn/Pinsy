@@ -9,7 +9,9 @@ var pinSchema = mongoose.Schema({
     video: String,
     creator: Object,
     date: Date,
-    tags: String
+    tags: String,
+    likes: Array,
+    comments: Array
 });
 
 var Pin = mongoose.model('Pin', pinSchema);

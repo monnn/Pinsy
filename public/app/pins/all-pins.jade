@@ -23,6 +23,11 @@
               img.image-on-map(src="{{ currentPin.image }}")
           tr
             td.creator-on-map by {{ currentPin.creator.username }}
+            td.actions
+              span.likes-count {{ currentPin.likes.length }}
+              span.like.glyphicon(ng-class="hasLiked() ? 'glyphicon-thumbs-down' : 'glyphicon-thumbs-up'", ng-click="like()")
+              span.comments-count {{ currentPin.comments.length }}
+              span.comments-link.glyphicon.glyphicon-comment
             td.see-more-link
               a.see-more-link(ng-click="toggleWholePinOpened()") see more
 
@@ -38,3 +43,8 @@
         td.whole-pin-description {{ currentPin.description }}
       tr
         td.creator-on-map  By {{ currentPin.creator.username }}
+    table.comments-section Comments
+      tr.comment(ng-repeat="comment in currentPin.comments")
+        td.comment-creator {{ comment.creator }}
+        td.comment-content {{ comment.content }}
+        td.comment-date {{ comment.date }}
