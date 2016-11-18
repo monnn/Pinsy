@@ -7,12 +7,16 @@ module.exports = function(app) {
     app.get('/api/users', auth.isInRole('admin'), userController.getAllUsers);
     app.post('/api/users', userController.createUser);
 
-    app.get('/api/pins', pinController.getAllPins);
     app.post('/api/pins', pinController.createPin);
-    app.get('/uploadToken', pinController.getUploadToken);
+    app.get('/api/pins', pinController.getAllPins);
+
     app.post('/pin/like', pinController.likePin);
+    app.get('/pin/likes', pinController.getLikes);
+
     app.post('/pin/comment', pinController.commentPin);
-    app.get('/pin/comments', pinController.getAllComments);
+    app.get('/pin/comments', pinController.getComments);
+
+    app.get('/uploadToken', pinController.getUploadToken);
 
     app.get('/partials/:partialDir/:partialName', function (req, res) {
         res.render('../../public/app/' + req.params.partialDir + '/' + req.params.partialName);

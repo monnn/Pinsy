@@ -1,17 +1,16 @@
 var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
+    encryption = require('../utilities/encryption'),
+    Schema = mongoose.Schema;
 
-var userSchema = mongoose.Schema({
+var userSchema = Schema({
     username: {type: String, require: '{PATH} is required', unique: true},
     firstName: {type: String, require: '{PATH} is required'},
     lastName: {type: String, require: '{PATH} is required'},
     salt: String,
     hashPass: String,
     roles: [String],
-    pins: Array,
-    likes: Array,
-    comments: Array
-  });
+    pins: [{ type: Schema.Types.ObjectId, ref: 'Pin' }]
+});
 
 userSchema.method({
     authenticate: function (password) {

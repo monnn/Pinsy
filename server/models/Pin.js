@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-var pinSchema = mongoose.Schema({
+var pinSchema = Schema({
     title: {type: String, require: '{PATH} is required'},
     description: String,
     location: Object,
@@ -9,9 +10,7 @@ var pinSchema = mongoose.Schema({
     video: String,
     creator: Object,
     date: Date,
-    tags: String,
-    likes: Array,
-    comments: Array
+    tags: String
 });
 
 var Pin = mongoose.model('Pin', pinSchema);

@@ -1,6 +1,7 @@
 var Pin = require('mongoose').model('Pin'),
     User = require('mongoose').model('User'),
     Comment = require('mongoose').model('Comment'),
+    Like = require('mongoose').model('Like'),
     fs = require('fs'),
     config = require('../config/config');
 
@@ -19,7 +20,6 @@ module.exports = {
                 if (err) {
                     console.log('Failed to update user ' + err);
                 }
-                console.log(pin.creator);
             });
             console.log(pin);
             res.send(pin);
@@ -36,23 +36,38 @@ module.exports = {
     },
 
     likePin: function(req, res) {
-        var pin = req.body.pin,
-            currentUser = req.body.user,
-            hasLiked = req.body.hasLiked,
-            pinQuery = hasLiked ? {'$pull': {likes: currentUser._id}} : {'$addToSet': {likes: currentUser._id}},
-            userQuery = hasLiked ? {'$pull': {likes: pin._id}} : {'$addToSet': {likes: pin._id}};
+        var hasLiked = req.body.hasLiked,
+            like = {pin: req.body.pin, user: req.body.user, date: req.body.date};
 
-        User.update({_id: currentUser._id}, userQuery , function(err) {
-            if (err) {
-                console.log('Failed to update user ' + err);
-            }
-        });
+        if (hasLiked) {
+            Like.findOneAndRemove({pin: like.pin, user: like.user}, function (err, like) {
+                if (err) {
+                    console.log('Failed to create new like ' + err);
+                    res.status(400);
+                    return res.send({reason: err.toString()});
+                }
+                res.send(like);
+            });
+        } else {
+            Like.create(like, function (err, like) {
+                if (err) {
+                    console.log('Failed to create new like ' + err);
+                    res.status(400);
+                    return res.send({reason: err.toString()});
+                }
+                res.send(like);
+            });
+        }
+    },
 
-        Pin.findOneAndUpdate({_id: pin._id}, pinQuery, {new: true}, function(err, pin) {
+    getLikes: function(req, res) {
+        var pinId = req.query.pinId;
+        Like.find({pin: pinId}).exec(function (err, collection) {
             if (err) {
-                console.log('Failed to update pin ' + err);
+                console.log('Like could not be loaded ' + err);
             }
-            res.send(pin);
+            console.log(collection);
+            res.send(collection);
         });
     },
 
@@ -84,8 +99,9 @@ module.exports = {
         });
     },
 
-    getAllComments: function(req, res) {
-        Comment.find({}).exec(function (err, collection) {
+    getComments: function(req, res) {
+        var pin = req.body.pin;
+        Comment.find({pin: pin._id}).exec(function (err, collection) {
             if (err) {
                 console.log('Comment could not be loaded ' + err);
             }

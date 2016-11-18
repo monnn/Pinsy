@@ -54,7 +54,7 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
 
         likePin: function(pin, hasLiked) {
             var deferred = $q.defer();
-            $http.post('/pin/like', {pin: pin, user: identity.currentUser, hasLiked: hasLiked})
+            $http.post('/pin/like', {pin: pin, user: identity.currentUser, hasLiked: hasLiked, date: Date.now()})
             .success(function(response) {
                 deferred.resolve(response);
             })

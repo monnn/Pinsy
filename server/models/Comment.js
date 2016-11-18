@@ -1,9 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-var commentSchema = mongoose.Schema({
+var commentSchema = Schema({
     content: {type: String, require: '{PATH} is required'},
-    pin: Object,
-    creator: Object,
+    pin: { type: Schema.Types.ObjectId, ref: 'Pin' },
+    creator: { type: Schema.Types.ObjectId, ref: 'User' },
     date: Date
 });
 

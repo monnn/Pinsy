@@ -24,7 +24,7 @@
           tr
             td.creator-on-map by {{ currentPin.creator.username }}
             td.actions
-              span.likes-count {{ currentPin.likes.length }}
+              span.likes-count {{ likes.length }}
               span.like.glyphicon(ng-class="hasLiked() ? 'glyphicon-thumbs-down' : 'glyphicon-thumbs-up'", ng-click="like()")
               span.comments-count {{ currentPin.comments.length }}
               span.comments-link.glyphicon.glyphicon-comment

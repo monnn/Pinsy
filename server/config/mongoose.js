@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     user = require('../models/User'),
     pin = require('../models/Pin'),
-    comment = require('../models/Comment');
+    comment = require('../models/Comment'),
+    like = require('../models/Like');
 
 module.exports = function(config) {
     var db = mongoose.connection;
