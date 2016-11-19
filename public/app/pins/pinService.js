@@ -62,6 +62,18 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
                 console.log(error);
             });
             return deferred.promise;
+        },
+
+        commentPin: function(pin, comment) {
+            var deferred = $q.defer();
+            $http.post('/pin/comment', {pin: pin, user: identity.currentUser, comment: comment, date: Date.now()})
+            .success(function(response) {
+                deferred.resolve(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+            return deferred.promise;
         }
     }
 });

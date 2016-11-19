@@ -21,7 +21,7 @@ module.exports = {
                     console.log('Failed to update user ' + err);
                 }
             });
-            console.log(pin);
+            // console.log(pin);
             res.send(pin);
         });
     },
@@ -66,46 +66,30 @@ module.exports = {
             if (err) {
                 console.log('Like could not be loaded ' + err);
             }
-            console.log(collection);
             res.send(collection);
         });
     },
 
     commentPin: function(req, res) {
-        var newComment = req.body,
-            commentQuery = {'$push': {comments: comment._id}};
+        var comment = {pin: req.body.pin, user: req.body.user, content: req.body.comment, date: req.body.date};
 
-        Comment.create(newComment, function (err, comment) {
+        Comment.create(comment, function (err, comment) {
             if (err) {
                 console.log('Failed to create new comment ' + err);
                 res.status(400);
                 return res.send({reason: err.toString()});
             }
-
-            User.update({_id: comment.creator}, commentQuery, function(err) {
-                if (err) {
-                    console.log('Failed to update user ' + err);
-                }
-                console.log(comment.creator);
-            });
-
-            Pin.findOneAndUpdate({_id: comment.pin}, commentQuery, {new: true}, function(err, pin) {
-                if (err) {
-                    console.log('Failed to update pin ' + err);
-                }
-                console.log(pin);
-                res.send(pin);
-            });
+            res.send(comment);
         });
     },
 
     getComments: function(req, res) {
-        var pin = req.body.pin;
-        Comment.find({pin: pin._id}).exec(function (err, collection) {
+        var pinId = req.query.pinId;
+        Comment.find({pin: pinId}).exec(function (err, collection) {
             if (err) {
                 console.log('Comment could not be loaded ' + err);
             }
-            res.send(collection);
+            res.send(collection.reverse());
         });
     },
 

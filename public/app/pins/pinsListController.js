@@ -1,5 +1,6 @@
-app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap, identity, pinService, LikeResource) {
+app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap, identity, pinService, LikeResource, CommentResource) {
     $scope.pins = PinResource.query();
+    $scope.currentUser = identity.currentUser;
 
     $('.splash').click(function() {
         $('body').addClass('leaving');
@@ -13,6 +14,7 @@ app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap,
         $scope.currentPin = pin;
         $scope.map.showInfoWindow('pin-iw', this);
         $scope.likes = LikeResource.query({pinId: pin._id});
+        $scope.comments = CommentResource.query({pinId: pin._id});
     // $sce.trustAsResourceUrl(this.data.video);
     };
 
@@ -33,12 +35,18 @@ app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap,
     };
 
     $scope.toggleLike = function(hasLiked) {
-        pinService.likePin($scope.currentPin, hasLiked).then(function(pin) {
+        pinService.likePin($scope.currentPin, hasLiked).then(function(like) {
             if (hasLiked) {
-                $scope.likes.pop(pin);
+                $scope.likes.pop(like);
             } else {
-                $scope.likes.push(pin);
+                $scope.likes.push(like);
             }
+        });
+    };
+
+    $scope.addComment = function(comment) {
+        pinService.commentPin($scope.currentPin, comment).then(function(newComment) {
+            $scope.comments.unshift(newComment);
         });
     }
 });

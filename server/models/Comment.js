@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var commentSchema = Schema({
     content: {type: String, require: '{PATH} is required'},
     pin: { type: Schema.Types.ObjectId, ref: 'Pin' },
-    creator: { type: Schema.Types.ObjectId, ref: 'User' },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     date: Date
 });
 
