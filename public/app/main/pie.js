@@ -20,8 +20,8 @@ app.directive('pie', ['$window', '$timeout', function ($window, $timeout) {
                          .cornerRadius(20);
 
                 var arcOver = d3.svg.arc()
-                .outerRadius(radius +50)
-                .innerRadius(0);
+                                .outerRadius(radius +50)
+                                .innerRadius(0);
 
                 var a = (width / 2) - 20,
                     b = (height / 2) - 90;
@@ -32,8 +32,8 @@ app.directive('pie', ['$window', '$timeout', function ($window, $timeout) {
                             .attr("transform","translate("+a+","+b+")");
 
                 div = d3.select("body")
-                .append("div")
-                .attr("class", "tooltip");
+                        .append("div")
+                        .attr("class", "tooltip");
 
                 var pie = d3.layout.pie()
                             .sort(null)

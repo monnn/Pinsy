@@ -1,8 +1,13 @@
-app.controller('PinController', function ($scope, $location, pinService, notifier, NgMap) {
+app.controller('PinController', function ($scope, $location, $timeout, pinService, notifier, NgMap) {
     $scope.createPin = function (pin) {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+        $timeout(function() {
+            $scope.isLoading = true;
+        }, 200);
         pin.location = $scope.location;
         pin.markerPosition = [pin.location.lat(), pin.location.lng()];
         pinService.createPin(pin).then(function (success) {
+            $scope.isLoading = false;
             notifier.success('Pin successfully created');
             $location.path('/');
         });

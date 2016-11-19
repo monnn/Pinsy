@@ -30,3 +30,11 @@
         .pull-right
           button.btn.btn-primary(ng-click="createPin(pin)", ng-disabled="addPinForm.$invalid") Create pin
           a.btn.btn-primary(href="#/") Cancel
+          .overlay(ng-show="isLoading")
+            div(id="loading-container")
+              .loadingwrap
+                ul.loading-elements
+                  li
+                  li
+                  li
+                  li
