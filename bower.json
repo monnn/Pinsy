@@ -26,6 +26,10 @@
     "ngmap": "^1.17.3",
     "angular-underscore-module": "^1.0.3",
     "d3": "^3.5.17",
-    "d3-cloud": "^1.2.1"
+    "d3-cloud": "^1.2.1",
+    "d3-tip": "^0.7.1"
+  },
+  "resolutions": {
+    "d3": "^3.5.17"
   }
 }

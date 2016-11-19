@@ -1,20 +1,13 @@
-app.directive('platelet', ['$window', '$timeout', function ($window, $timeout) {
+app.directive('pie', ['$window', '$timeout', function ($window, $timeout) {
     return {
         restrict: 'AE',
-        template: '<div class="platelet-container"></div>',
+        template: '<div class="pie-container"></div>',
         scope: {
-          wordData: '='
+          pieData: '='
         },
         link: function(scope, element, attrs) {
-            function drawPlatelet() {
-                var data = [{"age":"Below 6 years","population":511},
-                            {"age":"6 yrs & Above – Below 12 yrs","population":394},
-                            {"age":"12 yrs & Above –Below 16 yrs","population":429},
-                            {"age":"16 yrs & Above – Below 18 yrs","population":568},
-                            {"age":"18 yrs & Above – Below 30 yrs","population":13117},
-                            {"age":"30 yrs & Above – Below 45 yrs","population":13094},
-                            {"age":"45 yrs & Above – Below 60 yrs","population":5225},
-                            {"age":"60 yrs & Above","population":1116}];
+            function drawPie() {
+                var data = scope.pieData;
 
                 var margin = {top:40,left:40,right:40,bottom:40},
                     width = 300,
@@ -32,13 +25,13 @@ app.directive('platelet', ['$window', '$timeout', function ($window, $timeout) {
 
                 var a = (width / 2) - 20,
                     b = (height / 2) - 90;
-                var svg = d3.select(".platelet-container").append("svg")
+                var svg = d3.select(".pie-container").append("svg")
                             .attr("viewBox", "0 0 " + width + " " + height / 2)
                             .attr("preserveAspectRatio", "xMidYMid meet")
                             .append("g")
                             .attr("transform","translate("+a+","+b+")");
 
-                var div = d3.select("body")
+                div = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip");
 
@@ -58,7 +51,7 @@ app.directive('platelet', ['$window', '$timeout', function ($window, $timeout) {
                             var mouseVal = d3.mouse(this);
                             div.style("display","none");
                             div
-                            .html("Age:"+d.data.age+"</br>"+"No. of Victims:"+d.data.population)
+                            .html("Age:"+d.data.age+"</br>"+"No. of population:"+d.data.population)
                             .style("left", (d3.event.pageX+12) + "px")
                             .style("top", (d3.event.pageY-10) + "px")
                             .style("opacity", 1)
@@ -75,6 +68,12 @@ app.directive('platelet', ['$window', '$timeout', function ($window, $timeout) {
                 })
                 .attr("d", arc);
             }
+
+            scope.$watch('pieData', function() {
+                if (scope.pieData) {
+                    $timeout(drawPie(), 50);
+                }
+            });
         }
     }
 }]);

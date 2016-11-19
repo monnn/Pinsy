@@ -20,6 +20,10 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/main/word-cloud-view',
             controller: 'MainController'
         })
+        .when('/pie', {
+            templateUrl: '/partials/main/pie-view',
+            controller: 'MainController'
+        })
         .when('/signup', {
             templateUrl: '/partials/account/signup',
             controller: 'SignupController'
