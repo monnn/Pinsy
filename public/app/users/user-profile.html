@@ -1,10 +1,39 @@
-<div class="container">
-  <table class="table">
-    <tr ng-repeat="user in result">
-      <td> Username </td>
-      <td> {{ user.username }} </td>
-      <td> {{ user.firstName }} </td>
-      <td> {{ user.lastName }} </td>
+<div class="profile-container" ng-repeat="user in users">
+  <div class="user-info-container">
+    <img class="user-picture" src="../../img/police-cat.jpg">
+    <table class="table profile-table" >
+      <tr>
+        <td> Username </td>
+        <td> {{ user.username }} </td>
       </tr>
+      <tr>
+        <td> First name </td>
+        <td> {{ user.firstName }} </td>
+      </tr>
+      <tr>
+        <td> Last name </td>
+        <td> {{ user.lastName }} </td>
+      </tr>
+      <tr>
+        <td> Number of pins </td>
+        <td> {{ user.pins.length }} </td>
+      </tr>
+    </table>
+  </div>
+  <div class="user-profile-menu">
+    <button class="btn btn-primary change-view-button" ng-click="openPinsView()"> Recent pins </button>
+    <button class="btn btn-primary change-view-button" ng-click="openCommentsView()"> Recent comments </button>
+  </div>
+  <table class="table pins-table" ng-if="!commentsViewOpened">
+    <tr ng-repeat="pin in pins">
+      <td> Pin </td>
+      <td> {{ pin.title }} </td>
+    </tr>
    </table>
+  <table class="table comments-table" ng-if="commentsViewOpened">
+    <tr ng-repeat="comment in comments">
+      <td> Comment </td>
+      <td> {{ comment.content }} </td>
+    </tr>
+  </table>
 </div>

@@ -5,10 +5,21 @@
     <button class="btn btn-primary post-comment-button" ng-click="addComment(newComment)"> Post it
   </div>
   <table class="comments-section"> Comments
-    <tr class="comment-row" ng-repeat="comment in comments">
-      <td class="comment-creator"> {{ comment.user }} </td>
-      <td class="comment-content"> {{ comment.content }} </td>
-      <td class="comment-date"> {{ comment.date }} </td>
-    </tr>
+    <table class="comment-table" ng-repeat="comment in comments">
+      <tr>
+        <td></td>
+        <td class="comment-creator"> {{ comment.user }} </td>
+      </tr>
+      <tr>
+        <td>
+          <img class="creator-picture" src="../../img/police-cat.jpg">
+        </td>
+        <td class="comment-content"> {{ comment.content }} </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="comment-date"> {{ comment.date }} </td>
+      </tr>
+    </table>
   </table>
 </div>

@@ -22,7 +22,6 @@ module.exports = {
     },
     getUsers: function (req, res) {
         var userId = req.query.uId;
-        console.log(req.query);
         if (userId) {
             User.find({_id: userId}).exec(function (err, user) {
             if (err) {

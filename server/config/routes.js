@@ -8,7 +8,7 @@ module.exports = function(app) {
     app.post('/api/users', userController.createUser);
 
     app.post('/api/pins', pinController.createPin);
-    app.get('/api/pins', pinController.getAllPins);
+    app.get('/api/pins', pinController.getPins);
 
     app.post('/pin/like', pinController.likePin);
     app.get('/pin/likes', pinController.getLikes);

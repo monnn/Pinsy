@@ -8,7 +8,6 @@ var Pin = require('mongoose').model('Pin'),
 module.exports = {
     createPin: function (req, res, next) {
         var newPinData = req.body;
-
         Pin.create(newPinData, function (err, pin) {
             if (err) {
                 console.log('Failed to create new pin ' + err);
@@ -24,13 +23,23 @@ module.exports = {
         });
     },
 
-    getAllPins: function (req, res) {
-        Pin.find({}).exec(function (err, collection) {
+    getPins: function (req, res) {
+        var userId = req.query.userId;
+        if (userId) {
+            Pin.find({'creator._id': userId}).exec(function (err, collection) {
             if (err) {
                 console.log('Pin could not be loaded ' + err);
             }
             res.send(collection);
         });
+        } else {
+            Pin.find({}).exec(function (err, collection) {
+                if (err) {
+                    console.log('Pin could not be loaded ' + err);
+                }
+                res.send(collection);
+            });
+        }
     },
 
     likePin: function(req, res) {
@@ -82,13 +91,23 @@ module.exports = {
     },
 
     getComments: function(req, res) {
-        var pinId = req.query.pinId;
-        Comment.find({pin: pinId}).exec(function (err, collection) {
-            if (err) {
-                console.log('Comment could not be loaded ' + err);
-            }
-            res.send(collection.reverse());
-        });
+        var pinId = req.query.pinId,
+            userId = req.query.userId;
+        if (pinId) {
+            Comment.find({pin: pinId}).exec(function (err, collection) {
+                if (err) {
+                    console.log('Comment could not be loaded ' + err);
+                }
+                res.send(collection.reverse());
+            });
+        } else if (userId) {
+            Comment.find({user: userId}).exec(function (err, collection) {
+                if (err) {
+                    console.log('Comment could not be loaded ' + err);
+                }
+                res.send(collection.reverse());
+            });
+        }
     },
 
     getUploadToken: function(req, res) {

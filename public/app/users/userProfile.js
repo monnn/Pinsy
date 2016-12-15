@@ -8,15 +8,21 @@ app.directive('userProfile', [function() {
         },
         templateUrl: 'app/users/user-profile.html',
 
-        controller: ['$scope', '$location', 'identity', 'UserResource', function($scope, $location, identity, UserResource) {
+        controller: ['$scope', '$location', 'identity', 'UserResource', 'CommentResource', 'PinResource',
+            function($scope, $location, identity, UserResource, CommentResource, PinResource) {
 
-            var selectedUserId = $location.search().userId;
-
+            var userId = $location.search().userId || identity.currentUser._id;
             //display info of user with given id:
-            if (selectedUserId) {
-                $scope.result = UserResource.query({uId: selectedUserId});
-            } else {
-                $scope.result = UserResource.query({uId: identity.currentUser._id});
+            $scope.users = UserResource.query({uId: userId});
+            $scope.comments = CommentResource.query({userId: userId});
+            $scope.pins = PinResource.query({userId: userId});
+
+            $scope.openCommentsView = function() {
+                $scope.commentsViewOpened = true;
+            }
+
+            $scope.openPinsView = function() {
+                $scope.commentsViewOpened = false;
             }
 
             $('.splash').click(function() {
@@ -25,11 +31,6 @@ app.directive('userProfile', [function() {
 
             $scope.$on('destroy', function() {
             });
-        }],
-        link: function(scope, element) {
-            function getLinks() {
-                return true;
-            }
-        }
+        }]
     };
 }]);

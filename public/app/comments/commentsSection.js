@@ -10,6 +10,8 @@ app.directive('commentsSection', [function() {
             $scope.comments = CommentResource.query({pinId: $scope.pin._id});
             $scope.currentUser = identity.currentUser;
 
+            //for each comment from comments create a query for the username of the creator
+
             $scope.addComment = function(comment) {
                 pinService.commentPin($scope.pin, comment).then(function(newComment) {
                     $scope.comments.unshift(newComment);

@@ -1,0 +1,32 @@
+.user-picture {
+  display: inline-block;
+  vertical-align: top;
+  height: 250px;
+  /*width: 200px;*/
+  margin-right: 100px;
+  border-radius: 35%;
+  background-color: #FF0000;
+}
+
+.profile-table {
+  display: inline-block;
+  width: auto;
+}
+
+.profile-container {
+  text-align: center;
+}
+
+.user-profile-menu {
+  margin-bottom: 20px;
+  background-color: #337AB7;
+}
+
+.change-view-button {
+  width: 49%;
+}
+
+.user-info-container {
+  padding: 20px;
+  background: -webkit-linear-gradient(right, rgba(41, 255, 255, 0.12) 9%, rgba(41, 255, 255, 0.63) 90%);
+}

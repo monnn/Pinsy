@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.comment-row {
+.comment-table {
   height: 50px;
   background-color: #D4E8F3;
   border: 5px solid white;
@@ -22,4 +22,18 @@
 .user-posting {
   padding-right: 5px;
   color: white;
+}
+
+.creator-picture {
+  margin: 0 10px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.comment-creator, .comment-content {
+  width: 100%
+}
+
+.comment-date {
+  float: right;
 }
