@@ -20,12 +20,24 @@ module.exports = {
             });
         });
     },
-    getAllUsers: function (req, res) {
-        User.find({}).exec(function (err, collection) {
+    getUsers: function (req, res) {
+        var userId = req.query.uId;
+        console.log(req.query);
+        if (userId) {
+            User.find({_id: userId}).exec(function (err, user) {
             if (err) {
                 console.log('User could not be loaded ' + err);
             }
-            res.send(collection);
+            console.log(user);
+            res.send(user);
         });
+        } else {
+            User.find({}).exec(function (err, collection) {
+                if (err) {
+                    console.log('User could not be loaded ' + err);
+                }
+                res.send(collection);
+            });
+        }
     }
 }

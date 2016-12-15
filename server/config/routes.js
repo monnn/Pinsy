@@ -4,7 +4,7 @@ var auth = require('./auth'),
 
 
 module.exports = function(app) {
-    app.get('/api/users', auth.isInRole('admin'), userController.getAllUsers);
+    app.get('/api/users', userController.getUsers);
     app.post('/api/users', userController.createUser);
 
     app.post('/api/pins', pinController.createPin);

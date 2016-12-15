@@ -36,6 +36,9 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/pins/all-pins',
             controller: 'PinsListController'
         })
+        .when('/user-profile', {
+            templateUrl: '/partials/users/user-profile-page'
+        })
         .when('/admin/users', {
             templateUrl: '/partials/admin/users-list',
             controller: 'UserListController',

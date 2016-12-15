@@ -1,4 +1,4 @@
-app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap, identity, pinService, LikeResource, CommentResource) {
+app.controller('PinsListController', function ($scope, $sce, $location, PinResource, NgMap, identity, pinService, LikeResource, CommentResource) {
     $scope.pins = PinResource.query();
     $scope.currentUser = identity.currentUser;
 
@@ -15,7 +15,6 @@ app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap,
         $scope.map.showInfoWindow('pin-iw', this);
         $scope.likes = LikeResource.query({pinId: pin._id});
         $scope.comments = CommentResource.query({pinId: pin._id});
-    // $sce.trustAsResourceUrl(this.data.video);
     };
 
     $scope.toggleWholePinOpened = function() {
@@ -44,9 +43,7 @@ app.controller('PinsListController', function ($scope, $sce, PinResource, NgMap,
         });
     };
 
-    $scope.addComment = function(comment) {
-        pinService.commentPin($scope.currentPin, comment).then(function(newComment) {
-            $scope.comments.unshift(newComment);
-        });
+    $scope.openProfile = function(userId) {
+        $location.path('/user-profile').search({userId: userId});
     }
 });

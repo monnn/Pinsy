@@ -22,7 +22,8 @@
             td.image-cell-on-map
               img.image-on-map(src="{{ currentPin.image }}")
           tr
-            td.creator-on-map by {{ currentPin.creator.username }}
+            td
+              a.creator-on-map.link-to-profile(ng-click="openProfile(currentPin.creator._id)") by {{ currentPin.creator.username }}
             td.actions
               span.likes-count {{ likes.length }}
               span.like.glyphicon(ng-class="hasLiked() ? 'glyphicon-thumbs-down' : 'glyphicon-thumbs-up'", ng-click="like()")
@@ -32,24 +33,4 @@
               a.see-more-link(ng-click="toggleWholePinOpened()") see more
 
   .overlay(ng-show="currentPin && wholePinOpened", ng-click="toggleWholePinOpened()")
-  .whole-pin-dialog(ng-show="currentPin && wholePinOpened")
-    .close-button(ng-click="toggleWholePinOpened()") X
-    table.whole-pin-data
-      tr
-        td.whole-pin-title {{ currentPin.title }}
-      tr
-        td.whole-image-cell
-          img.whole-image(src="{{ currentPin.image }}")
-        td.whole-pin-description {{ currentPin.description }}
-      tr
-        td.creator-on-map.creator-on-whole  By {{ currentPin.creator.username }}
-    .comments
-      .add-comment-area
-        span.user-posting {{ currentUser.username }}
-        input.new-comment-input.form-control(type="text", placeholder="Comment", ng-model="newComment")
-        button.btn.btn-primary.post-comment-button(ng-click="addComment(newComment)") Post it
-      table.comments-section Comments
-        tr.comment-row(ng-repeat="comment in comments")
-          td.comment-creator {{ comment.user }}
-          td.comment-content {{ comment.content }}
-          td.comment-date {{ comment.date }}
+  whole-pin-dialog.whole-pin-dialog(ng-if="currentPin && wholePinOpened", pin='currentPin', on-close='toggleWholePinOpened()')

@@ -83,7 +83,7 @@ app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) 
               return d.size + "px";
             })
             .on("click", function (d) {
-
+              //open side bar with pins coressponding to the selected tag
             })
             .style("opacity", 1e-6)
             .transition()

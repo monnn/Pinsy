@@ -1,0 +1,14 @@
+<div class="comments">
+  <div class="add-comment-area">
+    <span class="user-posting"> {{ currentUser.username }} </span>
+    <input class="new-comment-input form-control" type="text" placeholder="Comment" ng-model="newComment">
+    <button class="btn btn-primary post-comment-button" ng-click="addComment(newComment)"> Post it
+  </div>
+  <table class="comments-section"> Comments
+    <tr class="comment-row" ng-repeat="comment in comments">
+      <td class="comment-creator"> {{ comment.user }} </td>
+      <td class="comment-content"> {{ comment.content }} </td>
+      <td class="comment-date"> {{ comment.date }} </td>
+    </tr>
+  </table>
+</div>

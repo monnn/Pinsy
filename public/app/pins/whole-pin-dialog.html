@@ -1,0 +1,18 @@
+<div class="close-button" ng-click="onClose()"> X </div>
+<table class="whole-pin-data">
+  <tr>
+    <td class="whole-pin-title"> {{ pin.title }} </td>
+  </tr>
+  <tr>
+    <td class="whole-image-cell">
+      <img class="whole-image" src="{{ pin.image }}">
+    </td>
+    <td class="whole-pin-description"> {{ pin.description }}</td>
+  </tr>
+  <tr>
+    <td>
+      <a class="creator-on-map creator-on-whole link-to-profile" ng-click="openProfile(currentPin.creator._id)"> By {{ pin.creator.username }} </a>
+    </td>
+  </tr>
+</table>
+<comments-section pin='pin'> </comments-section>

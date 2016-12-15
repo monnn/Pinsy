@@ -8,7 +8,6 @@ var Pin = require('mongoose').model('Pin'),
 module.exports = {
     createPin: function (req, res, next) {
         var newPinData = req.body;
-        // newPinData.creator = newPinData.creator._id
 
         Pin.create(newPinData, function (err, pin) {
             if (err) {
@@ -21,7 +20,6 @@ module.exports = {
                     console.log('Failed to update user ' + err);
                 }
             });
-            // console.log(pin);
             res.send(pin);
         });
     },

@@ -18,11 +18,13 @@ ul.nav.navbar-nav(ng-controller="LoginController", ng-show="identity.isAuthentic
 
   ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
     li.dropdown
-      a.dropdown-toggle(href="", data-toggle="dropdown")
+      a.main-link.dropdown-link.dropdown-toggle(href="", data-toggle="dropdown")
         | {{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
         span.caret
       ul.dropdown-menu
         li(ng-show="identity.currentUser.isAdmin()")
-          a(href="#/admin/users") Users
+          a.main-link(href="#/admin/users") Users
         li
-          a(href="/" ng-click="logout()") Sign Out
+          a.main-link(href="#/user-profile") My profile
+        li
+          a.main-link(href="/" ng-click="logout()") Sign Out

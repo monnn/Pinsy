@@ -81,16 +81,20 @@ input {
   font-size: 26px;
 }
 
-a {
+a.main-link {
   color: white !important;
 }
 
-a:focus, a:hover{
+a.main-link:focus, a.main-link:hover{
   color: #ccc !important;
 }
 
 .dropdown-menu {
   background-color: #3292C4 !important;
+}
+
+.dropdown-link {
+  background: none !important;
 }
 
 .whole-pin-dialog {
