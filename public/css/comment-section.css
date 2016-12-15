@@ -1,0 +1,25 @@
+.new-comment-input {
+  display: inline-block;
+  width: calc(100% - 160px);
+}
+
+.comments-section {
+  width: 100%;
+}
+
+.comment-row {
+  height: 50px;
+  background-color: #D4E8F3;
+  border: 5px solid white;
+}
+
+.add-comment-area {
+  margin: 10px 0;
+  background-color: #094A6D;
+  padding: 10px;
+}
+
+.user-posting {
+  padding-right: 5px;
+  color: white;
+}
