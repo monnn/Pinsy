@@ -1,5 +1,5 @@
 <div class="profile-container" ng-repeat="user in users">
-  <div class="user-info-container">
+  <div class="user-basic-info">
     <img class="user-picture" src="../../img/police-cat.jpg">
     <table class="table profile-table" >
       <tr>
@@ -21,10 +21,17 @@
     </table>
   </div>
   <div class="user-profile-menu">
-    <button class="btn btn-primary change-view-button" ng-click="openPinsView()"> Recent pins </button>
-    <button class="btn btn-primary change-view-button" ng-click="openCommentsView()"> Recent comments </button>
+    <button class="btn btn-primary change-view-button" ng-click="changeView('about')"> About </button>
+    <button class="btn btn-primary change-view-button" ng-click="changeView('pins')"> Recent pins </button>
+    <button class="btn btn-primary change-view-button" ng-click="changeView('comments')"> Recent comments </button>
   </div>
-  <table class="table pins-table" ng-if="!commentsViewOpened">
+  <table class="table about-table" ng-if="!commentsViewOpened && !pinsViewOpened">
+    <tr>
+      <td> From </td>
+      <td> {{ data.from }} </td>
+    </tr>
+   </table>
+  <table class="table pins-table" ng-if="pinsViewOpened">
     <tr ng-repeat="pin in pins">
       <td> Pin </td>
       <td> {{ pin.title }} </td>

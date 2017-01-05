@@ -17,12 +17,17 @@ app.directive('userProfile', [function() {
             $scope.comments = CommentResource.query({userId: userId});
             $scope.pins = PinResource.query({userId: userId});
 
-            $scope.openCommentsView = function() {
-                $scope.commentsViewOpened = true;
-            }
-
-            $scope.openPinsView = function() {
-                $scope.commentsViewOpened = false;
+            $scope.changeView = function(view) {
+                if (view === 'pins') {
+                    $scope.pinsViewOpened = true;
+                    $scope.commentsViewOpened = false;
+                } else if (view === 'comments') {
+                    $scope.commentsViewOpened = true;
+                    $scope.pinsViewOpened = false;
+                } else {
+                    $scope.commentsViewOpened = false;
+                    $scope.pinsViewOpened = false;
+                }
             }
 
             $('.splash').click(function() {

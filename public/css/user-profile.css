@@ -15,18 +15,23 @@
 
 .profile-container {
   text-align: center;
+  background: -webkit-radial-gradient(bottom, rgb(147, 198, 255) 1%, rgba(41, 255, 255, 0.06) 73%);
 }
 
 .user-profile-menu {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   background-color: #337AB7;
 }
 
 .change-view-button {
-  width: 49%;
+  width: 33%;
 }
 
-.user-info-container {
+.user-basic-info {
   padding: 20px;
-  background: -webkit-linear-gradient(right, rgba(41, 255, 255, 0.12) 9%, rgba(41, 255, 255, 0.63) 90%);
+  /*background: -webkit-linear-gradient(right, rgba(41, 255, 255, 0.12) 9%, rgba(41, 255, 255, 0.63) 90%);*/
+}
+
+.comments-table, .pins-table, .about-table {
+  /*background: -webkit-radial-gradient(top, rgba(41, 255, 255, 0.12) 9%, rgba(41, 136, 255, 0.63) 90%);*/
 }

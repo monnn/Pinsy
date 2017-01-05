@@ -8,7 +8,7 @@
     <table class="comment-table" ng-repeat="comment in comments">
       <tr>
         <td></td>
-        <td class="comment-creator"> {{ comment.user }} </td>
+        <td class="comment-creator"> {{ comment.creator[0].username }} </td>
       </tr>
       <tr>
         <td>
@@ -18,7 +18,7 @@
       </tr>
       <tr>
         <td></td>
-        <td class="comment-date"> {{ comment.date }} </td>
+        <td class="comment-date"> {{ comment.relativeDate }} </td>
       </tr>
     </table>
   </table>

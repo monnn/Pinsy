@@ -7,6 +7,8 @@ ul.nav.navbar-nav(ng-controller="LoginController", ng-show="identity.isAuthentic
             a.main-link(href="#/word-cloud") Popular themes
           li
             a.main-link(href="#/pie") Popular users
+          li
+            a.main-link(href="#/pie") Recent activity
 
 .navbar-right(ng-controller="LoginController")
   form.navbar-form(ng-hide="identity.isAuthenticated()")
