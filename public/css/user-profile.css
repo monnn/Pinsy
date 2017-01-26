@@ -35,3 +35,7 @@
 .comments-table, .pins-table, .about-table {
   /*background: -webkit-radial-gradient(top, rgba(41, 255, 255, 0.12) 9%, rgba(41, 136, 255, 0.63) 90%);*/
 }
+
+.pin-in-profile {
+  cursor: pointer;
+}

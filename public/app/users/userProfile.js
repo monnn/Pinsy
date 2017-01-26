@@ -14,7 +14,7 @@ app.directive('userProfile', [function() {
             var userId = $location.search().userId || identity.currentUser._id;
             //display info of user with given id:
             $scope.users = UserResource.query({uId: userId});
-            $scope.comments = CommentResource.query({userId: userId});
+            $scope.commentsFromUser = CommentResource.query({userId: userId});
             $scope.pins = PinResource.query({userId: userId});
 
             $scope.changeView = function(view) {
@@ -29,6 +29,13 @@ app.directive('userProfile', [function() {
                     $scope.pinsViewOpened = false;
                 }
             }
+
+            $scope.toggleWholePinOpened = function(pin) {
+                $scope.currentPin = pin;
+                $scope.pinDataOpened = !$scope.pinDataOpened;
+                window.scrollTo(0, 0);
+                $('body').toggleClass('disable-scroll', $scope.pinDataOpened);
+            };
 
             $('.splash').click(function() {
                 $('body').addClass('leaving');

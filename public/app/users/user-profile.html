@@ -32,15 +32,17 @@
     </tr>
    </table>
   <table class="table pins-table" ng-if="pinsViewOpened">
-    <tr ng-repeat="pin in pins">
-      <td> Pin </td>
-      <td> {{ pin.title }} </td>
+    <tr ng-repeat="currentPin in pins">
+      <td ng-include="'app/pins/info-window.html'"> </td>
     </tr>
    </table>
   <table class="table comments-table" ng-if="commentsViewOpened">
-    <tr ng-repeat="comment in comments">
+    <tr ng-repeat="comment in commentsFromUser">
       <td> Comment </td>
       <td> {{ comment.content }} </td>
     </tr>
   </table>
+
+  <div class="overlay" ng-show="pinDataOpened" ng-click="toggleWholePinOpened()"> </div>
+  <whole-pin-dialog class="whole-pin-dialog" ng-if="pinDataOpened" pin='currentPin' on-close='toggleWholePinOpened()' open-profile='openProfile(userId)'> </whole-pin-dialog>
 </div>

@@ -1,7 +1,8 @@
 var auth = require('./auth'),
     userController = require('../controllers/userController'),
-    pinController = require('../controllers/pinController');
-
+    pinController = require('../controllers/pinController'),
+    likeController = require('../controllers/likeController'),
+    commentController = require('../controllers/commentController');
 
 module.exports = function(app) {
     app.get('/api/users', userController.getUsers);
@@ -10,11 +11,11 @@ module.exports = function(app) {
     app.post('/api/pins', pinController.createPin);
     app.get('/api/pins', pinController.getPins);
 
-    app.post('/pin/like', pinController.likePin);
-    app.get('/pin/likes', pinController.getLikes);
+    app.post('/pin/like', likeController.likePin);
+    app.get('/pin/likes', likeController.getLikes);
 
-    app.post('/pin/comment', pinController.commentPin);
-    app.get('/pin/comments', pinController.getComments);
+    app.post('/pin/comment', commentController.commentPin);
+    app.get('/pin/comments', commentController.getComments);
 
     app.get('/uploadToken', pinController.getUploadToken);
 

@@ -16,7 +16,6 @@ app.directive('commentsSection', [function() {
                     //for each comment from comments create a query for the username of the creator
                     comments.map(function(comment) {
                         comment.relativeDate = moment(comment.date).fromNow();
-                        console.log(comment.relativeDate);
                         comment.creator = UserResource.query({uId: comment.user});
                     })
                     $scope.comments = comments;

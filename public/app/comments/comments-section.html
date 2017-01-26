@@ -1,5 +1,5 @@
 <div class="comments">
-  <div class="add-comment-area">
+  <div class="add-comment-area" ng-if="!isInformative">
     <span class="user-posting"> {{ currentUser.username }} </span>
     <input class="new-comment-input form-control" type="text" placeholder="Comment" ng-model="newComment">
     <button class="btn btn-primary post-comment-button" ng-click="addComment(newComment)"> Post it
