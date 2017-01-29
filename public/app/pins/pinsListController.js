@@ -44,6 +44,7 @@ app.controller('PinsListController', function ($scope, $sce, $location, PinResou
     };
 
     $scope.openProfile = function(userId) {
+        $('body').removeClass('disable-scroll');
         $location.path('/user-profile').search({userId: userId});
     }
 });
