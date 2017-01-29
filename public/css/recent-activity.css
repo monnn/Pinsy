@@ -1,0 +1,22 @@
+.recent-pins {
+    margin: 30px auto;
+    border: 2px solid red;
+    width: 440px;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.recent-title {
+    font-size: 18px;
+}
+
+.pins-table {
+    padding: 0 10px;
+    border: 2px solid green;
+    margin: 10px 0;
+}
+
+.recent-comments-container {
+    width: 440px;
+    margin: 0 auto;
+}

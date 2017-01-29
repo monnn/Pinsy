@@ -1,15 +1,14 @@
-.recent-pins-container Pins
-	.recent-pins Recently added pins
-		.pin-as-table(ng-repeat="currentPin in recentPins")
-			div(ng-include="'app/pins/info-window.html'")
-			.pin-relative-date Added {{currentPin.relativeDate}}
-	.popular-today Most popular pins today
-		.popular-table(ng-repeat="like in todayLikes")
-			.like-title This is like from today!
-			.like-user {{like.user}}
-.recent-comments-container Recently added comments
-	.comments-table(ng-repeat="recentComment in comments")
-		.comment-title {{recentComment.content}}
-		.comment-date {{recentComment.date}}
-	comment-section
-	div(ng-include="'app/comments/comments-section.html'")
+.recent-pins-container
+    .recent-pins
+        .recent-title Recently added pins
+        .pins-table(ng-repeat="recentPin in recentPins")
+            info-window-custom(pin="recentPin", is-informative="true")
+            .pin-relative-date Added {{recentPin.relativeDate}}
+    .recent-pins
+        .recent-title Most popular pins today
+        .pins-table(ng-repeat="popularToday in popularTodayPins")
+            info-window-custom(pin="popularToday", is-informative="true")
+            .like-title This is like from today!
+.recent-comments-container
+    .recent-title Recently added comments
+    comments-section(is-informative='true', limit='10')

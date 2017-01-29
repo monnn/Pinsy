@@ -1,19 +1,19 @@
 <table class="content-info-window">
   <tr>
-    <td class="title-on-map"> {{ currentPin.title }} </td>
+    <td class="title-on-map"> {{ pin.title }} </td>
     <td></td>
     <td></td>
   </tr>
   <tr>
-    <td class="description-on-map"> {{ currentPin.description }} </td>
+    <td class="description-on-map"> {{ pin.description }} </td>
     <td></td>
     <td class="image-cell-on-map">
-      <img class="image-on-map" src="{{ currentPin.image }}">
+      <img class="image-on-map" src="{{ pin.image }}">
     </td>
   </tr>
   <tr>
     <td>
-      <a class="creator-on-map link-to-profile" ng-click="openProfile(currentPin.creator._id)"> by {{ currentPin.creator.username }} </a>
+      <a class="creator-on-map link-to-profile" ng-click="openProfile(pin.creator._id)"> by {{ pin.creator.username }} </a>
     </td>
     <td class="actions" ng-if="!isInformative">
       <span class="likes-count"> {{ likes.length }} </span>
@@ -22,7 +22,7 @@
       <span class="comments-link glyphicon glyphicon-comment"></span>
     </td>
     <td class="see-more-link"
-      <a class="see-more-link" ng-click="toggleWholePinOpened(currentPin)"> see more </a>
+      <a class="see-more-link" ng-click="toggleWholePinOpened(pin)"> see more </a>
     </td>
   </tr>
 </table>

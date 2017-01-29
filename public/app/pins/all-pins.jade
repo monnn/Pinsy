@@ -15,5 +15,5 @@
     info-window#pin-iw(visible-on-marker="{{ pin._id }}")
       div(ng-non-bindable)
         div(ng-include="'app/pins/info-window.html'")
-  .overlay(ng-show="currentPin && wholePinOpened", ng-click="toggleWholePinOpened()")
-  whole-pin-dialog.whole-pin-dialog(ng-if="currentPin && wholePinOpened", pin='currentPin', on-close='toggleWholePinOpened()', open-profile='openProfile(userId)')
+  .overlay(ng-show="pin && wholePinOpened", ng-click="toggleWholePinOpened()")
+  whole-pin-dialog.whole-pin-dialog(ng-if="pin && wholePinOpened", pin='pin', on-close='toggleWholePinOpened()', open-profile='openProfile(userId)')

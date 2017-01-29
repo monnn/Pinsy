@@ -1,57 +1,64 @@
-app.controller('RecentController', function ($scope, $timeout, PinResource, CommentResource, LikeResource, _) {
+app.controller('RecentController', function ($scope, $timeout, PinResource, LikeResource, _) {
     
     $scope.pins = PinResource.query();
-    $scope.allComments = CommentResource.query();
 
-    //from all comments take last 10, ordered by date
-    $scope.allComments.$promise.then(function(comments) {
-    	$scope.recentComments = comments.slice(0, 10);
-    	$scope.comments = $scope.recentComments;
+    $scope.pins.$promise.then(function(pins) {
+        $scope.recentPins = pins.reverse().slice(0, 5);
+        $scope.recentPins.map(function(pin) {
+            pin.relativeDate = moment(pin.date).fromNow();
+        });
     })
 
-    //from all pins take last 10, ordered by date
-	$scope.pins.$promise.then(function(pins) {
-		$scope.recentPins = pins.reverse().slice(0, 10);
-		$scope.recentPins.map(function(pin) {
-			pin.relativeDate = moment(pin.date).fromNow();
-		});
-	})
+    function getPopularTodayPins() {
+        var currentDate = new Date(),
+            day = currentDate.getDate(),
+            month = currentDate.getMonth() + 1,
+            year = currentDate.getFullYear(),
+            arrayWithLikes = [],
+            arrayWithPinsAndCount = [];
 
-    var getPopularTodayPins = function() {
-    	var currentDate = new Date(),
-    		day = currentDate.getDate(),
-    		month = currentDate.getMonth() + 1,
-    		year = currentDate.getFullYear();
+        increaseSize = function(pin) {
+            arrayWithPinsAndCount.find(function(pinObject) {
+                if (pinObject.pin === pin) {
+                    pinObject.count += 1;
+                }
+            });
+        };
 
-		if(day < 10) {
-		    day = '0' + day;
-		} 
+        if(day < 10) {
+            day = '0' + day;
+        } 
 
-		if(month < 10) {
-		    month = '0' + month;
-		}
+        if(month < 10) {
+            month = '0' + month;
+        }
 
-		var today = year + '-' + month + '-' + day;
-		$scope.todayLikes = LikeResource.query({date: today});
-		$scope.todayLikes.$promise.then(function(likes) {
-           console.log(likes);
+        var today = year + '-' + month + '-' + day;
+        $scope.todayLikes = LikeResource.query({date: today});
+        $scope.todayLikes.$promise.then(function(likes) {
+            likes.map(function(like) {
+                arrayWithLikes.push(like);
+            });
+
+            arrayWithLikes.map(function(like) {
+                var isPinExisting = arrayWithPinsAndCount.find(function(pinObject) {
+                    return pinObject.pin === like.pin;
+                });
+
+                isPinExisting ? increaseSize(like.pin) : arrayWithPinsAndCount.push({pin: like.pin, count: 1});
+            });
+
+            $scope.popularTodayPins = [];
+            arrayWithPinsAndCount.slice(0, 5).map(function(pinObject) {
+                PinResource.query({pinId: pinObject.pin}).$promise.then(function(pin) {
+                    $scope.popularTodayPins.push(pin[0]);
+                })
+            });
         });
-    	//get likes where date = today
-    	//put likes into hashmap, where key = pin, which is liked, value = number of likes on pin
-    	//take first ten with highest value
-    	// $scope.popularTodayPins = $scope.pins.take(10);
     }
     getPopularTodayPins();
-
-    $scope.isInformative = true;
 
     $('.splash').click(function() {
         $('body').addClass('leaving');
     });
-
-    $('.carousel').carousel({
-        interval: 3000
-    })
-
-    $('.first-carousel-indicator').addClass('active');
 });

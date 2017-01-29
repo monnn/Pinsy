@@ -11,7 +11,7 @@ app.controller('PinsListController', function ($scope, $sce, $location, PinResou
     });
 
     $scope.showData = function(event, pin) {
-        $scope.currentPin = pin;
+        $scope.pin = pin;
         $scope.map.showInfoWindow('pin-iw', this);
         $scope.likes = LikeResource.query({pinId: pin._id});
         $scope.comments = CommentResource.query({pinId: pin._id});
@@ -34,7 +34,7 @@ app.controller('PinsListController', function ($scope, $sce, $location, PinResou
     };
 
     $scope.toggleLike = function(hasLiked) {
-        pinService.likePin($scope.currentPin, hasLiked).then(function(like) {
+        pinService.likePin($scope.pin, hasLiked).then(function(like) {
             if (hasLiked) {
                 $scope.likes.pop(like);
             } else {

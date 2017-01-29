@@ -22,9 +22,17 @@ module.exports = {
     },
 
     getPins: function (req, res) {
-        var userId = req.query.userId;
+        var userId = req.query.userId,
+            pinId = req.query.pinId;
         if (userId) {
             Pin.find({'creator._id': userId}).exec(function (err, collection) {
+            if (err) {
+                console.log('Pin could not be loaded ' + err);
+            }
+            res.send(collection);
+        });
+        } else if (pinId) {
+            Pin.find({'_id': pinId}).exec(function (err, collection) {
             if (err) {
                 console.log('Pin could not be loaded ' + err);
             }
