@@ -8,7 +8,7 @@
     <table class="comment-table" ng-repeat="comment in comments">
       <tr>
         <td></td>
-        <td class="comment-creator"> {{ comment.creator[0].username }} </td>
+        <td class="comment-creator" ng-click="openProfile(comment.user)"> {{ comment.creator[0].username }} </td>
       </tr>
       <tr>
         <td>

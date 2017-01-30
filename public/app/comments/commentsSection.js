@@ -8,8 +8,8 @@ app.directive('commentsSection', [function() {
         },
         templateUrl: 'app/comments/comments-section.html',
 
-        controller: ['$scope', 'identity', 'CommentResource', 'pinService', 'UserResource',
-        function($scope, identity, CommentResource, pinService, UserResource) {
+        controller: ['$scope', '$location', 'identity', 'CommentResource', 'pinService', 'UserResource',
+        function($scope, $location, identity, CommentResource, pinService, UserResource) {
             $scope.currentUser = identity.currentUser;
 
             loadComments = function() {
@@ -39,6 +39,11 @@ app.directive('commentsSection', [function() {
                     newComment.creator = [$scope.currentUser];
                     $scope.comments.unshift(newComment);
                 });
+            }
+
+            $scope.openProfile = function(userId) {
+                $('body').removeClass('disable-scroll');
+                $location.path('/user-profile').search({userId: userId});
             }
         }]
     };

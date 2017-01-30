@@ -48,3 +48,7 @@
   float: right;
   font-style: italic;
 }
+
+.comment-creator {
+  cursor: pointer;
+}
