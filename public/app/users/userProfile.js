@@ -29,13 +29,6 @@ app.directive('userProfile', [function() {
                 }
             }
 
-            $scope.toggleWholePinOpened = function(pin) {
-                $scope.pin = pin;
-                $scope.pinDataOpened = !$scope.pinDataOpened;
-                window.scrollTo(0, 0);
-                $('body').toggleClass('disable-scroll', $scope.pinDataOpened);
-            };
-
             $('.splash').click(function() {
                 $('body').addClass('leaving');
             });

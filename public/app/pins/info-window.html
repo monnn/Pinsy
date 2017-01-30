@@ -15,7 +15,7 @@
     <td>
       <a class="creator-on-map link-to-profile" ng-click="openProfile(pin.creator._id)"> by {{ pin.creator.username }} </a>
     </td>
-    <td class="actions" ng-if="!isInformative">
+    <td class="actions">
       <span class="likes-count"> {{ likes.length }} </span>
       <span class="like glyphicon" ng-class="hasLiked() ? 'glyphicon-thumbs-down' : 'glyphicon-thumbs-up'" ng-click="like()"> </span>
       <span class="comments-count"> {{ comments.length }} </span>
@@ -26,3 +26,5 @@
     </td>
   </tr>
 </table>
+<div class="overlay" ng-show="pinDataOpened" ng-click="toggleWholePinOpened()"> </div>
+<whole-pin-dialog class="whole-pin-dialog" ng-if="pinDataOpened" pin='selectedPin' on-close='toggleWholePinOpened()' open-profile='openProfile(userId)'> </whole-pin-dialog>

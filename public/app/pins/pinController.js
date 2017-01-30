@@ -4,6 +4,7 @@ app.controller('PinController', function ($scope, $location, $timeout, pinServic
         $timeout(function() {
             $scope.isLoading = true;
         }, 200);
+        pin.tags = pin.tags.split(', ');
         pin.location = $scope.location;
         pin.markerPosition = [pin.location.lat(), pin.location.lng()];
         pinService.createPin(pin).then(function (success) {

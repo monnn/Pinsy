@@ -23,7 +23,8 @@ module.exports = {
 
     getPins: function (req, res) {
         var userId = req.query.userId,
-            pinId = req.query.pinId;
+            pinId = req.query.pinId,
+            tag = req.query.tag;
         if (userId) {
             Pin.find({'creator._id': userId}).exec(function (err, collection) {
             if (err) {
@@ -33,6 +34,13 @@ module.exports = {
         });
         } else if (pinId) {
             Pin.find({'_id': pinId}).exec(function (err, collection) {
+            if (err) {
+                console.log('Pin could not be loaded ' + err);
+            }
+            res.send(collection);
+        });
+        } else if (tag) {
+            Pin.find({'tags': tag}).exec(function (err, collection) {
             if (err) {
                 console.log('Pin could not be loaded ' + err);
             }

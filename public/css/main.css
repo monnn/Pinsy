@@ -118,3 +118,16 @@ a.main-link:focus, a.main-link:hover{
 .pin-relative-date {
   margin: 5px 0 30px;
 }
+
+.bubble-chart-container {
+  width:960px;
+  height:880px;
+}
+
+.pins-with-tag-view {
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  right: 0;
+  top: 10%;
+}

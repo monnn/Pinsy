@@ -33,7 +33,9 @@
    </table>
   <table class="table pins-table" ng-if="pinsViewOpened">
     <tr ng-repeat="pin in pins">
-      <td ng-include="'app/pins/info-window.html'"> </td>
+      <td>
+        <info-window-custom pin="pin", is-informative="true"> </info-window-custom>
+      </td>
     </tr>
    </table>
   <table class="table comments-table" ng-if="commentsViewOpened">
@@ -42,7 +44,4 @@
       <td> {{ comment.content }} </td>
     </tr>
   </table>
-
-  <div class="overlay" ng-show="pinDataOpened" ng-click="toggleWholePinOpened()"> </div>
-  <whole-pin-dialog class="whole-pin-dialog" ng-if="pinDataOpened" pin='pin' on-close='toggleWholePinOpened()' open-profile='openProfile(userId)'> </whole-pin-dialog>
 </div>

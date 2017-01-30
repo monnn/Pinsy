@@ -1,10 +1,10 @@
-// angular.module('app').directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) {
 app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) {
   return {
     restrict: 'AE',
     template: '<div class="word-cloud-container"></div>',
     scope: {
-      wordData: '='
+      wordData: '=',
+      onTagClick: '&'
     },
     link: function(scope, element, attrs) {
       function drawWordCloud() {
@@ -83,6 +83,7 @@ app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) 
               return d.size + "px";
             })
             .on("click", function (d) {
+              scope.onTagClick({tag: d.text});
               //open side bar with pins coressponding to the selected tag
             })
             .style("opacity", 1e-6)

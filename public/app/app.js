@@ -17,12 +17,12 @@ app.config(function ($routeProvider, $locationProvider) {
             controller: 'MainController'
         })
         .when('/word-cloud', {
-            templateUrl: '/partials/main/word-cloud-view',
-            controller: 'MainController'
+            templateUrl: '/partials/graphics/word-cloud-view',
+            controller: 'GraphicsController'
         })
         .when('/pie', {
-            templateUrl: '/partials/main/pie-view',
-            controller: 'MainController'
+            templateUrl: '/partials/graphics/statistics-page',
+            controller: 'GraphicsController'
         })
         .when('/signup', {
             templateUrl: '/partials/account/signup',

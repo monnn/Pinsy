@@ -1,0 +1,4 @@
+div(word-cloud, word-data="wordData", on-tag-click="onTagClick(tag)")
+.pins-with-tag-view(ng-if="selectedTag")
+    .pins-table(ng-repeat="pin in pinsWithTag")
+        info-window-custom(pin="pin", is-informative="true")
