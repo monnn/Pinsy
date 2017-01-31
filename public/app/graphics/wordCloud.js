@@ -96,6 +96,7 @@ app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) 
             .style("fill", function (d) {
               return color(d.text.toLowerCase());
             })
+            .style("cursor", "pointer")
             .text(function (d) {
               return d.text;
             });

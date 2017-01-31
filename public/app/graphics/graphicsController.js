@@ -62,15 +62,15 @@ app.controller('GraphicsController', function ($scope, $timeout, PinResource) {
             {age: "45 yrs & Above – Below 60 yrs", population: 5225},
             {age: "60 yrs & Above", population: 1116}];
 
-    $scope.bubbleChartExample = [{id: "ISchedulable", value: 1041},
-            {id: "Parallel", value: 5176},
-            {id: "Pause", value: 449},
-            {id: "Scheduler", value: 5593},
-            {id: "Sequence", value: 5534},
-            {id: "Transition", value: 9201},
-            {id: "Transitioner", value: 19975},
-            {id: "TransitionEvent", value: 1116},
-            {id: "Tween", value: 6006}];
+    $scope.bubbleChartExample = [{id: "ISchedulable", value: 11},
+            {id: "Parallel", value: 76},
+            {id: "Pause", value: 49},
+            {id: "Scheduler", value: 59},
+            {id: "Sequence", value: 34},
+            {id: "Transition", value: 21},
+            {id: "Transitioner", value: 1},
+            {id: "TransitionEvent", value: 16},
+            {id: "Tween", value: 6}];
 
     $scope.onTagClick = function(tag) {
         $scope.selectedTag = tag;

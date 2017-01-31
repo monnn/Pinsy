@@ -119,9 +119,9 @@ a.main-link:focus, a.main-link:hover{
   margin: 5px 0 30px;
 }
 
-.bubble-chart-container {
-  width:960px;
-  height:880px;
+.bubble-chart-container1, .bubble-chart-container2 {
+  width:800px;
+  height:600px;
 }
 
 .pins-with-tag-view {
