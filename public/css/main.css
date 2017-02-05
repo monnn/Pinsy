@@ -119,8 +119,8 @@ a.main-link:focus, a.main-link:hover{
   margin: 5px 0 30px;
 }
 
-.bubble-chart-container1, .bubble-chart-container2 {
-  width:800px;
+.bubble-chart-example, .bar-chart-example , .most-active-users, .most-liked-pins{
+  width:900px;
   height:600px;
 }
 
@@ -130,4 +130,8 @@ a.main-link:focus, a.main-link:hover{
   position: absolute;
   right: 0;
   top: 10%;
+}
+
+.axis--x path {
+  display: none;
 }

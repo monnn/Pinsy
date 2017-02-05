@@ -1,3 +1,5 @@
 pie(pie-data="pieDataExample")
-bubble-chart(bubble-chart-data="bubbleChartExample", id="1")
-bubble-chart(bubble-chart-data="bubbleChartExample", id="2")
+bubble-chart(bubble-chart-data="mostActiveUsers", container-name="most-active-users", on-bubble-click="onBubbleClick(userId)")
+bubble-chart(bubble-chart-data="bubbleChartExample", container-name="bubble-chart-example")
+bar-chart(bar-chart-data="mostLikedPins", container-name="most-liked-pins" on-bar-click="onBarChartClick(pinId)")
+bar-chart(bar-chart-data="barChartExample", container-name="bar-chart-example")

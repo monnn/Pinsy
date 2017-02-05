@@ -1,11 +1,11 @@
 app.directive('bubbleChart', ['$window', '$timeout', function ($window, $timeout) {
     return {
-        restrict: 'AE',
-        // template: '<svg class="bubble-chart-container"></svg>',
+        restrict: 'E',
         templateUrl: 'app/graphics/bubble-chart-view.html',
         scope: {
-          id: '=',
-          bubbleChartData: '='
+          containerName: '@',
+          bubbleChartData: '=',
+          onBubbleClick: '&'
         },
         link: function(scope, element, attrs) {
             function drawBubbleChart() {
@@ -20,7 +20,7 @@ app.directive('bubbleChart', ['$window', '$timeout', function ($window, $timeout
                     .padding(1.5);
 
                 var svg = d3.select(function() {
-                  return ".bubble-chart-container" + scope.id;
+                    return "." + scope.containerName;
                 }())
                     .append("svg")
                     .attr("width", diameter)
@@ -39,13 +39,16 @@ app.directive('bubbleChart', ['$window', '$timeout', function ($window, $timeout
                         .attr("r", function(d) { return d.r; })
                         .attr("cx", function(d) { return d.x; })
                         .attr("cy", function(d) { return d.y; })
-                        .style("fill", function(d) { return color(d.value); });
+                        .style("fill", function(d) { return color(d.value); })
+                        .on("click", function (d) {
+                            scope.onBubbleClick({userId: d.user});
+                        });
 
                     bubbles.append("text")
                         .attr("x", function(d) { return d.x; })
                         .attr("y", function(d) { return d.y + 5; })
                         .attr("text-anchor", "middle")
-                        .text(function(d) { return d.id; })
+                        .text(function(d) { return d.username; })
                         .style({
                             "fill": "white",
                             "font-family": "Helvetica Neue, Helvetica, Arial, san-serif",

@@ -1,56 +1,133 @@
-app.controller('GraphicsController', function ($scope, $timeout, PinResource) {
-    $scope.pins = PinResource.query();
+app.controller('GraphicsController', function ($scope, $timeout, $q, PinResource, LikeResource, CommentResource, UserResource) {
 
-    initializewordCloudData = function() {
-        var arrayWithTags = [],
-            arrayWithTagsAndSize = [],
-            initialSize = 10;
+    function getLikes() {
+        var days = 10,
+            allLikes = [],
+            likesWithDate = [],
+            pinsWithCountAndDate = [],
+            mostLikedToday,
+            mostLikedByDays = [],
+            likesDeferred;
 
-        increaseSize = function(tag) {
-            arrayWithTagsAndSize.find(function(tagObject) {
-                if (tagObject.text === tag) {
-                    tagObject.size += 5;
+        function addLikeToDate(like) {
+            likesWithDate.find(function(likeObject) {
+                if (likeObject.date === like.date) {
+                    likeObject.likes.push(like);
                 }
             });
-        };
+        }
 
-        $scope.pins.map(function(pin) {
-            pin.tags.map(function(tag) {
-                arrayWithTags.push(tag);
-            })
-        });
-
-        arrayWithTags.map(function(tag) {
-            var isTagExisting = arrayWithTagsAndSize.find(function(tagObject) {
-                return tagObject.text === tag;
+        likesDeferred = LikeResource.query({date: moment().subtract(days, 'd').format('YYYY-MM-DD')});
+        likesDeferred.$promise.then(function(likes) {
+            likes.map(function(like) {
+                like.date = like.date.substring(0, 10);
+                allLikes.push(like);
             });
 
-            isTagExisting ? increaseSize(tag) : arrayWithTagsAndSize.push({text: tag, size: initialSize});
+            allLikes.map(function(like) {
+                var isDateExisting = likesWithDate.find(function(likeObject) {
+                    return likeObject.date === like.date;
+                });
+                isDateExisting ? addLikeToDate(like) : likesWithDate.push({likes: [like], date: like.date})
+            });
+
+            likesWithDate.map(function(day) {
+                pinsWithCountAndDate = [];
+                day.likes.map(function(like) {
+                    var isPinExisting = pinsWithCountAndDate.find(function(pinObject) {
+                        return pinObject.pin === like.pin;
+                    });
+
+                    isPinExisting ? increaseSize(pinsWithCountAndDate, like.pin, 'pin', 'count') : pinsWithCountAndDate.push({pin: like.pin, count: 1, date: like.date});
+                });
+                day.mostLiked = pinsWithCountAndDate;
+            });
+
+            likesWithDate.map(function(day) {
+                var max = Math.max.apply(Math, day.mostLiked.map(function(like) {
+                    return like.count;
+                }));
+                mostLikedToday = {};
+                mostLikedToday.date = day.date;
+                day.mostLiked.find(function(like) {
+                    if(like.count === max) {
+                        mostLikedToday.like = like;
+                    }
+                });
+                mostLikedByDays.push(mostLikedToday);
+            });
+
+            function getMostLikedPins() {
+                var mostLiked = [],
+                    deferred = $q.defer();
+
+                mostLikedByDays.map(function(pinObject) {
+                    PinResource.query({pinId: pinObject.like.pin}).$promise.then(function(pin) {
+                        mostLiked.push({pinId: pin[0]._id, date: pinObject.date, likes: pinObject.like.count});
+                        if (mostLiked.length == mostLikedByDays.length) {
+                            deferred.resolve(mostLiked);
+                        }
+                    });
+                });
+                return deferred.promise;
+            }
+            getMostLikedPins().then(function(mostLiked) {
+                $scope.mostLikedPins = mostLiked;
+            });
         });
-        $scope.wordData = arrayWithTagsAndSize;
-    };
+    }
+    $timeout(getLikes, 500);
+    $timeout(getUsers, 500);
 
-    $timeout(initializewordCloudData, 500);
+    function getUsers() {
+        var mostActiveDeferred = getMostActiveUsersWithUsernames();
+        mostActiveDeferred.then(function(mostActive) {
+            $scope.mostActiveUsers = mostActive;
+        });
+    }
 
-    $scope.wordDataExample = [{text: "study",size: 40}, {text: "motion","size": 15}, {text: "forces", size: 10},
-            {text: "electricity",size: 15}, {text: "movement", size: 10}, {text: "relation", size: 5},
-            {text: "things", size:10}, {text: "force","size": 5}, {text: "ad", size: 5},
-            {text: "energy", size:85}, {text: "living","size": 5}, {text: "nonliving", size: 5},
-            {text: "laws", size:15}, {text: "speed","size": 45}, {text: "velocity", size: 30},
-            {text: "define", size:5}, {text: "constraints", size: 5}, {text: "universe", size: 10},
-            {text: "physics", size:120}, {text: "describing", size: 5}, {text: "matter", size: 90},
-            {text: "physics-the", size:5}, {text: "world", size: 10}, {text: "works", size: 10},
-            {text: "science", size:70}, {text: "interactions", size: 30}, {text: "studies", size: 5},
-            {text: "properties", size:45}, {text: "nature", size: 40}, {text: "branch", size: 30},
-            {text: "concerned", size:25}, {text: "source", size: 40}, {text: "google", size: 10},
-            {text: "defintions", size:5}, {text: "two", size: 15}, {text: "grouped", size: 15},
-            {text: "traditional", size:15}, {text: "fields", size: 15}, {text: "acoustics", size: 15},
-            {text: "optics", size: 15}, {text: "mechanics", size: 20}, {text: "thermodynamics", size: 15},
-            {text: "electromagnetism", size:15}, {text: "modern", size: 15}, {text: "extensions", size: 15},
-            {text: "thefreedictionary", size:15}, {text: "interaction", size: 15}, {text: "org", size: 25},
-            {text: "answers", size: 5}, {text: "natural", size: 15}, {text: "objects", size: 5},
-            {text: "treats", size: 10}, {text: "acting", size: 5}, {text: "department", size: 5},
-            {text: "collinsdictionary", size: 5}, {text: "english", size: 5}, {text: "time", size: 35}];
+    function getMostActiveUsersWithUsernames() {
+        var mostActiveDeferred = getMostActiveUsers(),
+            deferred = $q.defer(),
+            iteration = 0;
+        mostActiveDeferred.then(function(mostActive) {
+            mostActive.map(function(userObject) {
+                UserResource.query({uId: userObject.user}).$promise.then(function(user) {
+                    userObject.username = user[0].username;
+                    iteration++;
+                    if (iteration === mostActive.length) {
+                        deferred.resolve(mostActive);
+                    }
+                });
+            });
+        });
+        return deferred.promise;
+    }
+
+    function getMostActiveUsers() {
+        var comments = CommentResource.query(),
+            usersWithCount = [],
+            deferred = $q.defer();
+
+        comments.$promise.then(function(comments) {
+            comments.map(function(comment) {
+                var isUserAdded = usersWithCount.find(function(commentObject) {
+                    return commentObject.user === comment.user;
+                });
+                isUserAdded ? increaseSize(usersWithCount, comment.user, 'user', 'value') : usersWithCount.push({user: comment.user, value: 1});
+            });
+            deferred.resolve(usersWithCount);
+        });
+        return deferred.promise;
+    }
+
+    function increaseSize(collection, element, typeOfElement, typeToIncrement) {
+        collection.find(function(object) {
+            if (object[typeOfElement] === element) {
+                object[typeToIncrement] += 1;
+            }
+        });
+    }
 
     $scope.pieDataExample = [{age: "Below 6 years", population: 511},
             {age: "6 yrs & Above – Below 12 yrs", population: 394},
@@ -72,12 +149,22 @@ app.controller('GraphicsController', function ($scope, $timeout, PinResource) {
             {id: "TransitionEvent", value: 16},
             {id: "Tween", value: 6}];
 
-    $scope.onTagClick = function(tag) {
-        $scope.selectedTag = tag;
-        $scope.pinsWithTag = PinResource.query({tag: tag});
-        $scope.pinsWithTag.$promise.then(function(pins) {
-            console.log(pins);
-        });
+    $scope.barChartExample = [{date: '2013-01-02', likes: 43},
+            {date: '2013-01-03', likes: 12},
+            {date: '2013-01-04', likes: 192},
+            {date: '2013-01-05', likes: 78},
+            {date: '2013-01-06', likes: 53},
+            {date: '2013-01-01', likes: 153},
+            {date: '2013-01-07', likes: 30}];
+
+    $scope.onBarChartClick = function(pinId) {
+        //call wholeinfowindow with pinId
+        debugger
+    };
+
+    $scope.onBubbleClick = function(userId) {
+        debugger
+        //display comments of user with given userId
     };
 
     $('.splash').click(function() {

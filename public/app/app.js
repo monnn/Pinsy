@@ -18,7 +18,7 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when('/word-cloud', {
             templateUrl: '/partials/graphics/word-cloud-view',
-            controller: 'GraphicsController'
+            controller: 'WordCloudController'
         })
         .when('/pie', {
             templateUrl: '/partials/graphics/statistics-page',
