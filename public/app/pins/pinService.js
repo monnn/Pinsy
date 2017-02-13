@@ -31,7 +31,7 @@ app.factory('pinService', function($q, $http, $timeout, identity, PinResource) {
             var pin = new PinResource(pinData),
                 deferred = $q.defer(),
                 uploading = $q.defer().resolve();
-            pin.creator = identity.currentUser;
+            pin.creator = identity.currentUser._id;
             pin.date = Date.now();
 
             if (pin.image) {

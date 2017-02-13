@@ -12,7 +12,7 @@ module.exports = {
                 res.status(400);
                 return res.send({reason: err.toString()});
             }
-            User.update({_id: newPinData.creator._id}, {'$push': {pins: pin._id}}, function(err) {
+            User.update({_id: newPinData.creator}, {'$push': {pins: pin._id}}, function(err) {
                 if (err) {
                     console.log('Failed to update user ' + err);
                 }
@@ -26,7 +26,7 @@ module.exports = {
             pinId = req.query.pinId,
             tag = req.query.tag;
         if (userId) {
-            Pin.find({'creator._id': userId}).exec(function (err, collection) {
+            Pin.find({'creator': userId}).exec(function (err, collection) {
             if (err) {
                 console.log('Pin could not be loaded ' + err);
             }

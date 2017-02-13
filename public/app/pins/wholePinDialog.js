@@ -3,6 +3,7 @@ app.directive('wholePinDialog', [function() {
         restrict: 'E',
         scope: {
             pin: '=',
+            creator: '=',
             openProfile: '&',
             onClose: '&'
         },

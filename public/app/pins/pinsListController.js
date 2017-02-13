@@ -1,4 +1,5 @@
-app.controller('PinsListController', function ($scope, $sce, $location, PinResource, NgMap, identity, pinService, LikeResource, CommentResource) {
+app.controller('PinsListController',
+    function ($scope, $sce, $location, PinResource, NgMap, identity, pinService, LikeResource, CommentResource, UserResource) {
     $scope.pins = PinResource.query();
     $scope.currentUser = identity.currentUser;
 
@@ -12,6 +13,9 @@ app.controller('PinsListController', function ($scope, $sce, $location, PinResou
 
     $scope.showData = function(event, pin) {
         $scope.pin = pin;
+        UserResource.query({uId: pin.creator}).$promise.then(function(user) {
+            $scope.creator = user[0];
+        })
         $scope.map.showInfoWindow('pin-iw', this);
         $scope.likes = LikeResource.query({pinId: pin._id});
         $scope.comments = CommentResource.query({pinId: pin._id});

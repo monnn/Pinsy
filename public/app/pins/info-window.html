@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td>
-      <a class="creator-on-map link-to-profile" ng-click="openProfile(pin.creator._id)"> by {{ pin.creator.username }} </a>
+      <a class="creator-on-map link-to-profile" ng-click="openProfile(creator._id)"> by {{ creator.username }} </a>
     </td>
     <td class="actions">
       <span class="likes-count"> {{ likes.length }} </span>
@@ -27,4 +27,4 @@
   </tr>
 </table>
 <div class="overlay" ng-show="pinDataOpened" ng-click="toggleWholePinOpened()"> </div>
-<whole-pin-dialog class="whole-pin-dialog" ng-if="pinDataOpened" pin='selectedPin' on-close='toggleWholePinOpened()' open-profile='openProfile(userId)'> </whole-pin-dialog>
+<whole-pin-dialog class="whole-pin-dialog" ng-if="pinDataOpened" pin='selectedPin' creator='creator' on-close='toggleWholePinOpened()' open-profile='openProfile(userId)'> </whole-pin-dialog>

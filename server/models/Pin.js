@@ -8,7 +8,7 @@ var pinSchema = Schema({
     markerPosition: Array,
     image: String,
     video: String,
-    creator: Object,
+    creator: { type: Schema.Types.ObjectId, ref: 'Pin' },
     date: Date,
     tags: [String]
 });

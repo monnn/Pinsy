@@ -7,10 +7,13 @@ app.directive('infoWindowCustom', [function() {
         },
         templateUrl: 'app/pins/info-window.html',
 
-        controller: ['$scope', '$location', 'PinResource', 'LikeResource', 'CommentResource',
-            function($scope, $location, PinResource, LikeResource, CommentResource) {
+        controller: ['$scope', '$location', 'UserResource', 'LikeResource', 'CommentResource',
+            function($scope, $location, UserResource, LikeResource, CommentResource) {
                 $scope.likes = LikeResource.query({pinId: $scope.pin._id});
                 $scope.comments = CommentResource.query({pinId: $scope.pin._id});
+                UserResource.query({uId: $scope.pin.creator}).$promise.then(function(user) {
+                    $scope.creator = user[0];
+                });
 
                 $scope.toggleWholePinOpened = function(pin) {
                     $scope.selectedPin = pin;
