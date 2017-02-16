@@ -4,19 +4,25 @@ app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) 
     template: '<div class="word-cloud-container"></div>',
     scope: {
       wordData: '=',
-      onTagClick: '&'
+      onTagClick: '&',
+      isTagSelected: '='
     },
     link: function(scope, element, attrs) {
       function drawWordCloud() {
 
         var width = Math.floor($window.innerWidth * 0.95),
-          height = Math.floor($window.innerHeight) - 80;
+            height = Math.floor($window.innerHeight) - 80;
 
         var svg = d3.select(".word-cloud-container")
           .insert("svg:svg", "h2")
           .attr("viewBox", "0 0 " + width / 2 + " " + height / 2)
           .attr("class", "word-cloud")
           .attr("preserveAspectRatio", "xMidYMid meet");
+
+          if (scope.isTagSelected) {
+            debugger
+            svg.attr("class", "word-cloud-tag-selected");
+          }
 
         var color = d3.scale.category20();
         var layout = d3.layout.cloud()
@@ -84,6 +90,7 @@ app.directive('wordCloud', ['$window', '$timeout', function ($window, $timeout) 
             })
             .on("click", function (d) {
               scope.onTagClick({tag: d.text});
+              update()
               //open side bar with pins coressponding to the selected tag
             })
             .style("opacity", 1e-6)

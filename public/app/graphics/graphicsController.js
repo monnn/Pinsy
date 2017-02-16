@@ -129,6 +129,10 @@ app.controller('GraphicsController', function ($scope, $timeout, $q, PinResource
         });
     }
 
+    function getUsersMostLiked() {
+        
+    }
+
     $scope.pieDataExample = [{age: "Below 6 years", population: 511},
             {age: "6 yrs & Above – Below 12 yrs", population: 394},
             {age: "12 yrs & Above –Below 16 yrs", population: 429},

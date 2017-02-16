@@ -60,6 +60,10 @@ app.controller('WordCloudController', function ($scope, $timeout, PinResource) {
         });
     };
 
+    $scope.closePinsView = function() {
+        $scope.selectedTag = false;
+    }
+
     $('.splash').click(function() {
         $('body').addClass('leaving');
     });

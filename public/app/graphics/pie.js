@@ -77,22 +77,3 @@ app.directive('pie', ['$window', '$timeout', function ($window, $timeout) {
         }
     }
 }]);
-/*
-                    svg.selectAll("text").data(pie(data)).enter()
-                     .append("text")
-                     .attr("class","label1")
-                     .attr("transform", function(d) {
-                       var dist=radius+15;
-                       var winkel=(d.startAngle+d.endAngle)/2;
-                       var x=dist*Math.sin(winkel)-4;
-                       var y=-dist*Math.cos(winkel)-4;
-                       
-                       return "translate(" + x + "," + y + ")";
-                    })
-                    .attr("dy", "0.35em")
-                    .attr("text-anchor", "middle")
-                    
-                    .text(function(d){
-                      return d.value;
-                    });
-*/

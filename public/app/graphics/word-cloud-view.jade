@@ -1,4 +1,5 @@
-div(word-cloud, word-data="wordData", on-tag-click="onTagClick(tag)")
-.pins-with-tag-view(ng-if="selectedTag")
+div(word-cloud, word-data="wordData", on-tag-click="onTagClick(tag)", is-tag-selected="selectedTag")
+.pins-with-tag-view(ng-class="selectedTag ? 'pins-table-opened' : 'pins-table-closed'")
+    .close(ng-click="closePinsView()") X
     .pins-table(ng-repeat="pin in pinsWithTag")
         info-window-custom(pin="pin", is-informative="true")

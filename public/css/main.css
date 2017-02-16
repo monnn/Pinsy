@@ -39,12 +39,7 @@ input {
 }
 
 .search-bar {
-    padding: 20px;
-}
-
-.word-cloud {
-  width: 100%;
-  height: 100%;
+  padding: 20px;
 }
 
 .jumbotron {
@@ -74,11 +69,6 @@ input {
 
 .carousel-item {
   height: 400px;
-}
-
-.word-cloud-link {
-  color: #f5f5f5;
-  font-size: 26px;
 }
 
 a.main-link {
@@ -117,21 +107,4 @@ a.main-link:focus, a.main-link:hover{
 
 .pin-relative-date {
   margin: 5px 0 30px;
-}
-
-.bubble-chart-example, .bar-chart-example , .most-active-users, .most-liked-pins{
-  width:900px;
-  height:600px;
-}
-
-.pins-with-tag-view {
-  height: 500px;
-  width: 500px;
-  position: absolute;
-  right: 0;
-  top: 10%;
-}
-
-.axis--x path {
-  display: none;
 }
