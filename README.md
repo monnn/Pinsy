@@ -1,7 +1,6 @@
 # Pinsy
 Web app for pining
 <br />
-Developed for course Advanced JS @ FMI
 
 ## Description
 Web application, giving the opportunity for users to pin something they saw and liked on specific place and share it with others.
