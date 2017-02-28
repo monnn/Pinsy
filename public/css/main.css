@@ -108,3 +108,7 @@ a.main-link:focus, a.main-link:hover{
 .pin-relative-date {
   margin: 5px 0 30px;
 }
+
+.actions {
+  width: 60px;
+}

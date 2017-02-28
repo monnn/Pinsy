@@ -24,7 +24,7 @@
 }
 
 .pins-with-tag-view {
-  height: 500px;
+  height: inherit;
   position: absolute;
   right: 0;
   top: 10%;
@@ -47,4 +47,10 @@
 
 .close {
   opacity: 0;
+}
+
+.graphic-title {
+  font-size: 20px;
+  text-align: center;
+  font-family: monospace;
 }
