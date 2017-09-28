@@ -9,6 +9,7 @@ E.g.: When walking on the street, the user see an old, vintage house. In their m
 and interesting place. Why not tell a ghost story? And take a picture of that creepy, old house? And make people tremble with fear!
 
 ## Functional requirements
+<br />
 * User can register and login
 <br />
 * User can view other user's profile
@@ -20,6 +21,8 @@ and interesting place. Why not tell a ghost story? And take a picture of that cr
 * User can like a pin
 <br />
 * User can comment a pin
+<br />
+* User can search for pins
 <br />
 * User can view statistics about pins, users, comments and likes
 
