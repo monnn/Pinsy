@@ -5,7 +5,7 @@ Web app for pining
 ## Description
 Web application, giving the opportunity for users to pin something they saw and liked on specific place and share it with others.
 <br />
-E.g.: When walking on the street, the user see an old, vintage house. In their mind, the vintige house represents a creepy
+E.g.: When walking on the street, the user see an old, vintage house. In their mind, the vintage house represents a creepy
 and interesting place. Why not tell a ghost story? And take a picture of that creepy, old house? And make people tremble with fear!
 
 ## Functional requirements
