@@ -22,13 +22,14 @@ and interesting place. Why not tell a ghost story? And take a picture of that cr
 <br />
 * User can comment a pin
 <br />
-* User can search for pins
+* User can search pins
 <br />
 * User can view statistics about pins, users, comments and likes
 
 ## Used technologies
 
 ### Client side
+<br />
 * Package Manager - bower
 <br />
 * Framework - Angular JS, v1.5.7
@@ -44,6 +45,7 @@ and interesting place. Why not tell a ghost story? And take a picture of that cr
 * moment-js, v2.17.1, library for better displaying of time
 
 ### Server side
+<br />
 * Package Manager - npm
 <br />
 * Framework - Express JS, v4.13.4,
